@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD uvicorn src.api:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD ["python", "-c", "import os,uvicorn; uvicorn.run('src.api:app', host='0.0.0.0', port=int(os.environ.get('PORT', '8000')))"]
