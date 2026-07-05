@@ -1,0 +1,501 @@
+restaurant_id,business_name,city,state,restaurant_type,chain_name,cuisine
+1,Caffeine Fix - Manhattan,Williamsburg,NY,fast_casual,Caffeine Fix,Coffee/Dessert
+2,Trattoria Sol - Staten Island,West Village,NY,casual_dining,Trattoria Sol,Italian
+3,Pita House - Long Island City,East Village,NY,qsr,Pita House,Mediterranean
+4,Little Espresso Place,Financial District,NY,casual_dining,,Coffee/Dessert
+5,The Diner Co - East Village,Manhattan,NY,qsr,The Diner Co,American
+6,Fiesta Kitchen - Queens,Williamsburg,NY,casual_dining,Fiesta Kitchen,Mexican
+7,The Curry Corner,Upper East Side,NY,casual_dining,,Indian
+8,Salsa Verde - Manhattan,Manhattan,NY,fast_casual,Salsa Verde,Mexican
+9,The Bakery - DUMBO,Brooklyn,NY,casual_dining,The Bakery,Coffee/Dessert
+10,Seoul Kitchen - SoHo,Tribeca,NY,casual_dining,Seoul Kitchen,Korean
+11,El Mexicano - Tribeca,Queens,NY,casual_dining,El Mexicano,Mexican
+12,Izakaya NYC - Upper East Side,Staten Island,NY,fast_casual,Izakaya NYC,Japanese
+13,Kimchi Corner - Harlem,Manhattan,NY,qsr,Kimchi Corner,Korean
+14,Bean & Brew - Chelsea,Upper East Side,NY,fast_casual,Bean & Brew,Coffee/Dessert
+15,The Diner Co - Chelsea,Long Island City,NY,casual_dining,The Diner Co,American
+16,Sushi Zen - Harlem,Queens,NY,fast_casual,Sushi Zen,Japanese
+17,Chef's Thai Place,Midtown,NY,fast_casual,,Thai
+18,Big Seoul Place,Manhattan,NY,fast_casual,,Korean
+19,Tandoori Palace - SoHo,West Village,NY,casual_dining,Tandoori Palace,Indian
+20,Pasta Prima - SoHo,Manhattan,NY,fast_casual,Pasta Prima,Italian
+21,Uncle Kimchi Cafe,Chelsea,NY,qsr,,Korean
+22,Big Golden Place,Bushwick,NY,casual_dining,,Chinese
+23,Casa Grande - DUMBO,Brooklyn,NY,fast_casual,Casa Grande,Mexican
+24,Bibimbap Bar - Long Island City,Long Island City,NY,casual_dining,Bibimbap Bar,Korean
+25,Bibimbap Bar - West Village,Park Slope,NY,fast_casual,Bibimbap Bar,Korean
+26,Big Bangkok Table,Brooklyn,NY,casual_dining,,Thai
+27,Mama's El Sol,Chelsea,NY,qsr,,Mexican
+28,Mama's Spice Corner,Williamsburg,NY,qsr,,Indian
+29,Mama's Delhi Place,East Village,NY,fast_casual,,Indian
+30,Olive Tree - Upper West Side,Queens,NY,qsr,Olive Tree,Mediterranean
+31,Seoul Place,Upper East Side,NY,casual_dining,,Korean
+32,Jade Garden - Astoria,Park Slope,NY,casual_dining,Jade Garden,Chinese
+33,Bibimbap Bar - Park Slope,Staten Island,NY,casual_dining,Bibimbap Bar,Korean
+34,Jade Garden - Bronx,Park Slope,NY,qsr,Jade Garden,Chinese
+35,Little Jade Table,Long Island City,NY,casual_dining,,Chinese
+36,Little Koi Cafe,DUMBO,NY,fine_dining,,Japanese
+37,Chef's Sam's Place,Williamsburg,NY,fine_dining,,American
+38,Salsa Verde - Astoria,Staten Island,NY,casual_dining,Salsa Verde,Mexican
+39,The Bakery - West Village,Long Island City,NY,qsr,The Bakery,Coffee/Dessert
+40,Aegean Kitchen - Long Island City,Staten Island,NY,fast_casual,Aegean Kitchen,Mediterranean
+41,Classic Eats - Williamsburg,Brooklyn,NY,fast_casual,Classic Eats,American
+42,Lucky Bowl - Midtown,Williamsburg,NY,casual_dining,Lucky Bowl,Chinese
+43,Falafel King - Midtown,Park Slope,NY,fast_casual,Falafel King,Mediterranean
+44,Bangkok Kitchen - Midtown,Williamsburg,NY,qsr,Bangkok Kitchen,Thai
+45,Little Spice Grill,Tribeca,NY,qsr,,Indian
+46,Big Delhi Corner,Upper West Side,NY,casual_dining,,Indian
+47,Little Classic Grill,Upper West Side,NY,qsr,,American
+48,Thai Spice - Queens,Queens,NY,fine_dining,Thai Spice,Thai
+49,Tandoori Palace - Queens,SoHo,NY,casual_dining,Tandoori Palace,Indian
+50,Fiesta Kitchen - SoHo,East Village,NY,casual_dining,Fiesta Kitchen,Mexican
+51,American Table - Staten Island,Financial District,NY,fast_casual,American Table,American
+52,Bean & Brew - Williamsburg,West Village,NY,qsr,Bean & Brew,Coffee/Dessert
+53,Olive Tree - Bushwick,West Village,NY,fast_casual,Olive Tree,Mediterranean
+54,Uncle Sakura Grill,West Village,NY,fast_casual,,Japanese
+55,Bangkok Kitchen - Financial District,Bushwick,NY,casual_dining,Bangkok Kitchen,Thai
+56,Aegean Kitchen - Harlem,Williamsburg,NY,fast_casual,Aegean Kitchen,Mediterranean
+57,Salsa Verde - Astoria,Williamsburg,NY,fast_casual,Salsa Verde,Mexican
+58,Fiesta Kitchen - DUMBO,Bushwick,NY,casual_dining,Fiesta Kitchen,Mexican
+59,Mama's El Sol,Tribeca,NY,qsr,,Mexican
+60,Delhi Spot,Queens,NY,casual_dining,,Indian
+61,Napoli Kitchen - Harlem,Park Slope,NY,casual_dining,Napoli Kitchen,Italian
+62,Spice Route - Astoria,Midtown,NY,qsr,Spice Route,Indian
+63,Dynasty Kitchen - Manhattan,SoHo,NY,fast_casual,Dynasty Kitchen,Chinese
+64,Izakaya NYC - Williamsburg,East Village,NY,fine_dining,Izakaya NYC,Japanese
+65,American Table - Manhattan,Queens,NY,fast_casual,American Table,American
+66,Little Italy - SoHo,Upper East Side,NY,qsr,Little Italy,Italian
+67,Pasta Prima - Manhattan,Bronx,NY,qsr,Pasta Prima,Italian
+68,Aegean Kitchen - SoHo,Bronx,NY,casual_dining,Aegean Kitchen,Mediterranean
+69,Olive Tree - Brooklyn,Harlem,NY,fine_dining,Olive Tree,Mediterranean
+70,The Bakery - Long Island City,Upper West Side,NY,casual_dining,The Bakery,Coffee/Dessert
+71,Big Taqueria,Bronx,NY,fine_dining,,Mexican
+72,Mama's Orchid Table,Financial District,NY,qsr,,Thai
+73,Siam Garden - Astoria,Queens,NY,fast_casual,Siam Garden,Thai
+74,Thai Orchid - Long Island City,Upper West Side,NY,fast_casual,Thai Orchid,Thai
+75,The Cantina Place,Williamsburg,NY,casual_dining,,Mexican
+76,Chef's Hana House,Park Slope,NY,qsr,,Japanese
+77,Uncle Lucky Bistro,Staten Island,NY,fast_casual,,Chinese
+78,Spice Route - Staten Island,DUMBO,NY,fast_casual,Spice Route,Indian
+79,The Olive Corner,Upper West Side,NY,fast_casual,,Mediterranean
+80,Espresso Grill,Astoria,NY,fast_casual,,Coffee/Dessert
+81,Izakaya NYC - Astoria,Williamsburg,NY,qsr,Izakaya NYC,Japanese
+82,Taco Loco - Bushwick,Brooklyn,NY,casual_dining,Taco Loco,Mexican
+83,Falafel King - Queens,Queens,NY,fine_dining,Falafel King,Mediterranean
+84,Hana House,Midtown,NY,fine_dining,,Japanese
+85,Taco Loco - Tribeca,Queens,NY,casual_dining,Taco Loco,Mexican
+86,El Sol Cafe,DUMBO,NY,casual_dining,,Mexican
+87,Little Billy's Table,Queens,NY,fast_casual,,American
+88,The Joe's Place,DUMBO,NY,casual_dining,,American
+89,The Orchid Kitchen,SoHo,NY,fast_casual,,Thai
+90,Falafel King - Financial District,Chelsea,NY,qsr,Falafel King,Mediterranean
+91,Roma Cafe,Queens,NY,fast_casual,,Italian
+92,Uncle Billy's Bistro,Williamsburg,NY,fast_casual,,American
+93,El Mexicano - West Village,Chelsea,NY,fast_casual,El Mexicano,Mexican
+94,Bibimbap Bar - Harlem,Upper East Side,NY,casual_dining,Bibimbap Bar,Korean
+95,Bean & Brew - Bronx,West Village,NY,qsr,Bean & Brew,Coffee/Dessert
+96,Big Orchid Place,Chelsea,NY,fast_casual,,Thai
+97,Burgersmith - Williamsburg,Tribeca,NY,fast_casual,Burgersmith,American
+98,The Classic,Long Island City,NY,qsr,,American
+99,Sushi Zen - Manhattan,Astoria,NY,fast_casual,Sushi Zen,Japanese
+100,Spice Route - Bronx,SoHo,NY,fast_casual,Spice Route,Indian
+101,Sweet Spot - Brooklyn,Long Island City,NY,qsr,Sweet Spot,Coffee/Dessert
+102,Tandoori Palace - Brooklyn,Brooklyn,NY,casual_dining,Tandoori Palace,Indian
+103,Chef's Joe's Kitchen,Tribeca,NY,casual_dining,,American
+104,Jade Bistro,Williamsburg,NY,fast_casual,,Chinese
+105,Salsa Verde - Long Island City,West Village,NY,casual_dining,Salsa Verde,Mexican
+106,Jade Bistro,West Village,NY,fast_casual,,Chinese
+107,Chef's Thai Grill,Midtown,NY,fine_dining,,Thai
+108,Korean Grill - Upper East Side,Tribeca,NY,qsr,Korean Grill,Korean
+109,The Bean Cafe,Staten Island,NY,qsr,,Coffee/Dessert
+110,Uncle Sweet Spot,Bushwick,NY,qsr,,Coffee/Dessert
+111,Fiesta Kitchen - Tribeca,Harlem,NY,fine_dining,Fiesta Kitchen,Mexican
+112,Masala Express - East Village,Chelsea,NY,qsr,Masala Express,Indian
+113,Thai Spice - Bushwick,Williamsburg,NY,qsr,Thai Spice,Thai
+114,Big Delhi,West Village,NY,qsr,,Indian
+115,Chef's Sweet Corner,Chelsea,NY,qsr,,Coffee/Dessert
+116,Grill House - East Village,Queens,NY,casual_dining,Grill House,American
+117,Little Golden Place,Upper West Side,NY,fine_dining,,Chinese
+118,Dynasty Kitchen - Williamsburg,Financial District,NY,fast_casual,Dynasty Kitchen,Chinese
+119,Wok Express - Harlem,Manhattan,NY,fine_dining,Wok Express,Chinese
+120,Cantina Bistro,SoHo,NY,fast_casual,,Mexican
+121,Chef's Bombay House,West Village,NY,fine_dining,,Indian
+122,Uncle Koi Bistro,Park Slope,NY,fast_casual,,Japanese
+123,Golden Dragon - DUMBO,Upper East Side,NY,qsr,Golden Dragon,Chinese
+124,Dragon Spot,Park Slope,NY,fast_casual,,Chinese
+125,Big Bangkok House,Manhattan,NY,fast_casual,,Thai
+126,Mediterranean Grill - Bronx,Park Slope,NY,fast_casual,Mediterranean Grill,Mediterranean
+127,Mama's Thai Cafe,Upper West Side,NY,casual_dining,,Thai
+128,Wok Express - Staten Island,Bushwick,NY,qsr,Wok Express,Chinese
+129,Napoli Kitchen - DUMBO,Brooklyn,NY,fast_casual,Napoli Kitchen,Italian
+130,Trattoria Sol - West Village,Bronx,NY,casual_dining,Trattoria Sol,Italian
+131,Trattoria Sol - Park Slope,Upper East Side,NY,fine_dining,Trattoria Sol,Italian
+132,Grill House - Manhattan,Harlem,NY,fast_casual,Grill House,American
+133,Big Sugar Place,Park Slope,NY,fast_casual,,Coffee/Dessert
+134,Seoul Place,Staten Island,NY,qsr,,Korean
+135,Bangkok Kitchen - Manhattan,Chelsea,NY,casual_dining,Bangkok Kitchen,Thai
+136,Mama's Golden,Williamsburg,NY,qsr,,Chinese
+137,Kimchi Corner - Upper East Side,Bronx,NY,fast_casual,Kimchi Corner,Korean
+138,The Bakery - Chelsea,Staten Island,NY,casual_dining,The Bakery,Coffee/Dessert
+139,Aegean Kitchen - Bronx,Park Slope,NY,casual_dining,Aegean Kitchen,Mediterranean
+140,Chef's Lotus Place,Long Island City,NY,casual_dining,,Thai
+141,Little Lotus,East Village,NY,fine_dining,,Thai
+142,The Mario's Kitchen,Financial District,NY,casual_dining,,Italian
+143,Big Orchid Place,Chelsea,NY,fine_dining,,Thai
+144,Ramen House - Long Island City,Upper West Side,NY,casual_dining,Ramen House,Japanese
+145,Little Bombay Place,SoHo,NY,casual_dining,,Indian
+146,Bean & Brew - Queens,Upper West Side,NY,casual_dining,Bean & Brew,Coffee/Dessert
+147,Trattoria Sol - Staten Island,Tribeca,NY,casual_dining,Trattoria Sol,Italian
+148,Korean Grill - SoHo,Astoria,NY,casual_dining,Korean Grill,Korean
+149,The American,Chelsea,NY,fast_casual,,American
+150,Bella Cucina - Upper East Side,Chelsea,NY,casual_dining,Bella Cucina,Italian
+151,Korean Grill - Financial District,Brooklyn,NY,fast_casual,Korean Grill,Korean
+152,Big Athens Place,Midtown,NY,qsr,,Mediterranean
+153,Masala Express - Brooklyn,Chelsea,NY,casual_dining,Masala Express,Indian
+154,Olive Kitchen,Queens,NY,fast_casual,,Mediterranean
+155,Izakaya NYC - Upper East Side,Astoria,NY,qsr,Izakaya NYC,Japanese
+156,The Olive House,Bushwick,NY,casual_dining,,Mediterranean
+157,Little Italy - Queens,Midtown,NY,fine_dining,Little Italy,Italian
+158,Trattoria Sol - Midtown,SoHo,NY,fast_casual,Trattoria Sol,Italian
+159,Little Italy - SoHo,East Village,NY,fast_casual,Little Italy,Italian
+160,Uncle Spice Kitchen,Williamsburg,NY,casual_dining,,Indian
+161,Chef's Dragon Grill,Upper East Side,NY,fine_dining,,Chinese
+162,The Basil,Financial District,NY,fast_casual,,Thai
+163,Salsa Verde - Tribeca,Bronx,NY,fine_dining,Salsa Verde,Mexican
+164,Jade Place,SoHo,NY,fast_casual,,Chinese
+165,Mumbai Kitchen - Manhattan,Long Island City,NY,casual_dining,Mumbai Kitchen,Indian
+166,Korean Grill - Harlem,Long Island City,NY,qsr,Korean Grill,Korean
+167,The Delhi Bistro,Tribeca,NY,fast_casual,,Indian
+168,American Table - DUMBO,Midtown,NY,qsr,American Table,American
+169,The Sakura Cafe,SoHo,NY,fast_casual,,Japanese
+170,Little Orchid Table,SoHo,NY,fine_dining,,Thai
+171,Chef's Masala Spot,Queens,NY,fine_dining,,Indian
+172,Aegean Kitchen - SoHo,Tribeca,NY,casual_dining,Aegean Kitchen,Mediterranean
+173,Little Joe's Cafe,Upper West Side,NY,casual_dining,,American
+174,Little Sugar Bistro,Upper West Side,NY,casual_dining,,Coffee/Dessert
+175,Dynasty Kitchen - SoHo,Long Island City,NY,qsr,Dynasty Kitchen,Chinese
+176,Thai Orchid - Harlem,Williamsburg,NY,qsr,Thai Orchid,Thai
+177,Taco Loco - Tribeca,Park Slope,NY,casual_dining,Taco Loco,Mexican
+178,Mama's Yuki Cafe,Chelsea,NY,fast_casual,,Japanese
+179,El Mexicano - Staten Island,Bushwick,NY,qsr,El Mexicano,Mexican
+180,Golden Dragon - SoHo,Park Slope,NY,fast_casual,Golden Dragon,Chinese
+181,Big Masala Cafe,Midtown,NY,fast_casual,,Indian
+182,Chef's Nonna's Kitchen,Bronx,NY,qsr,,Italian
+183,Pita House - Williamsburg,Harlem,NY,casual_dining,Pita House,Mediterranean
+184,Bean & Brew - DUMBO,Bushwick,NY,casual_dining,Bean & Brew,Coffee/Dessert
+185,Caffeine Fix - Financial District,Staten Island,NY,fast_casual,Caffeine Fix,Coffee/Dessert
+186,Dynasty Kitchen - Upper East Side,Upper East Side,NY,qsr,Dynasty Kitchen,Chinese
+187,Kimchi Corner - Tribeca,Williamsburg,NY,fast_casual,Kimchi Corner,Korean
+188,Mama's Kimchi Kitchen,SoHo,NY,casual_dining,,Korean
+189,American,SoHo,NY,fast_casual,,American
+190,Siam Garden - Manhattan,Upper West Side,NY,fast_casual,Siam Garden,Thai
+191,Pita House - Long Island City,Financial District,NY,qsr,Pita House,Mediterranean
+192,Sakura Grill - Tribeca,Brooklyn,NY,qsr,Sakura Grill,Japanese
+193,Thai Spice - Park Slope,Astoria,NY,casual_dining,Thai Spice,Thai
+194,Big Mario's Bistro,Financial District,NY,fast_casual,,Italian
+195,Little Basil House,DUMBO,NY,casual_dining,,Thai
+196,Aegean Kitchen - Astoria,Midtown,NY,casual_dining,Aegean Kitchen,Mediterranean
+197,Lemongrass - East Village,Tribeca,NY,fine_dining,Lemongrass,Thai
+198,Lemongrass - Astoria,Bronx,NY,casual_dining,Lemongrass,Thai
+199,Sakura Grill - Bronx,Queens,NY,casual_dining,Sakura Grill,Japanese
+200,Siam Garden - Long Island City,Upper West Side,NY,casual_dining,Siam Garden,Thai
+201,Masala Express - Bushwick,East Village,NY,fast_casual,Masala Express,Indian
+202,Little Athens Spot,Upper East Side,NY,qsr,,Mediterranean
+203,Thai Spice - Upper East Side,Upper West Side,NY,fast_casual,Thai Spice,Thai
+204,Sweet Spot - Upper East Side,Financial District,NY,qsr,Sweet Spot,Coffee/Dessert
+205,Bombay Grill,Park Slope,NY,qsr,,Indian
+206,Thai Orchid - Chelsea,Bronx,NY,qsr,Thai Orchid,Thai
+207,American Table - Brooklyn,Tribeca,NY,qsr,American Table,American
+208,Uncle Nonna's Place,Bronx,NY,casual_dining,,Italian
+209,Uncle Pita Grill,Williamsburg,NY,qsr,,Mediterranean
+210,Big La Casa Place,Bronx,NY,qsr,,Mexican
+211,Little Luigi's Grill,Queens,NY,casual_dining,,Italian
+212,Burgersmith - Chelsea,Queens,NY,qsr,Burgersmith,American
+213,Mama's Bean,Midtown,NY,casual_dining,,Coffee/Dessert
+214,Siam Garden - Long Island City,Long Island City,NY,qsr,Siam Garden,Thai
+215,Taco Loco - East Village,Upper East Side,NY,fast_casual,Taco Loco,Mexican
+216,Trattoria Sol - Chelsea,Staten Island,NY,qsr,Trattoria Sol,Italian
+217,Tandoori Palace - Upper West Side,Long Island City,NY,casual_dining,Tandoori Palace,Indian
+218,Masala Express - Harlem,Financial District,NY,fast_casual,Masala Express,Indian
+219,Big Masala House,Park Slope,NY,fast_casual,,Indian
+220,The Diner Co - DUMBO,Williamsburg,NY,qsr,The Diner Co,American
+221,Bella Cucina - Staten Island,Manhattan,NY,qsr,Bella Cucina,Italian
+222,Salsa Verde - East Village,Bronx,NY,fine_dining,Salsa Verde,Mexican
+223,Lemongrass - Long Island City,Bronx,NY,casual_dining,Lemongrass,Thai
+224,Taco Loco - Brooklyn,Staten Island,NY,qsr,Taco Loco,Mexican
+225,Tandoori Palace - Upper East Side,Midtown,NY,casual_dining,Tandoori Palace,Indian
+226,Little Athens Cafe,Williamsburg,NY,casual_dining,,Mediterranean
+227,Curry House - Staten Island,Financial District,NY,fine_dining,Curry House,Indian
+228,Mama's Sweet Grill,DUMBO,NY,qsr,,Coffee/Dessert
+229,Mama's Kimchi Cafe,DUMBO,NY,qsr,,Korean
+230,Big Milano Corner,SoHo,NY,fine_dining,,Italian
+231,Pita House - Astoria,Williamsburg,NY,casual_dining,Pita House,Mediterranean
+232,Uncle Sweet Kitchen,SoHo,NY,casual_dining,,Coffee/Dessert
+233,Pasta Prima - Park Slope,East Village,NY,fine_dining,Pasta Prima,Italian
+234,Olive Tree - Staten Island,Brooklyn,NY,fine_dining,Olive Tree,Mediterranean
+235,Thai Spice - Astoria,Park Slope,NY,casual_dining,Thai Spice,Thai
+236,Joe's Place,Tribeca,NY,qsr,,American
+237,Fiesta Kitchen - Manhattan,Upper East Side,NY,casual_dining,Fiesta Kitchen,Mexican
+238,Big Dragon Kitchen,Astoria,NY,qsr,,Chinese
+239,Seoul Corner,Upper West Side,NY,fast_casual,,Korean
+240,Tokyo Kitchen - Upper East Side,Upper East Side,NY,fast_casual,Tokyo Kitchen,Japanese
+241,Izakaya NYC - Queens,East Village,NY,casual_dining,Izakaya NYC,Japanese
+242,Pasta Prima - Brooklyn,West Village,NY,fast_casual,Pasta Prima,Italian
+243,Napoli Kitchen - Williamsburg,Bushwick,NY,casual_dining,Napoli Kitchen,Italian
+244,The Sakura Grill,Staten Island,NY,fine_dining,,Japanese
+245,Falafel King - Financial District,Staten Island,NY,casual_dining,Falafel King,Mediterranean
+246,El Mexicano - Bushwick,Staten Island,NY,casual_dining,El Mexicano,Mexican
+247,Seoul Kitchen - Queens,SoHo,NY,casual_dining,Seoul Kitchen,Korean
+248,Jade Garden - Staten Island,Bronx,NY,fast_casual,Jade Garden,Chinese
+249,Wok Express - East Village,Park Slope,NY,casual_dining,Wok Express,Chinese
+250,Thai Spice - Manhattan,Harlem,NY,casual_dining,Thai Spice,Thai
+251,The Roast Grill,Manhattan,NY,fast_casual,,Coffee/Dessert
+252,Classic Eats - Park Slope,Midtown,NY,fast_casual,Classic Eats,American
+253,Spice Route - Staten Island,Brooklyn,NY,fast_casual,Spice Route,Indian
+254,Caffeine Fix - Bushwick,West Village,NY,casual_dining,Caffeine Fix,Coffee/Dessert
+255,Aegean Kitchen - Financial District,Staten Island,NY,qsr,Aegean Kitchen,Mediterranean
+256,Dynasty Kitchen - Midtown,Park Slope,NY,fast_casual,Dynasty Kitchen,Chinese
+257,Big Mario's,Williamsburg,NY,qsr,,Italian
+258,Korean Grill - Williamsburg,Brooklyn,NY,fast_casual,Korean Grill,Korean
+259,Sugar Place,Park Slope,NY,fast_casual,,Coffee/Dessert
+260,Spice Route - Astoria,Manhattan,NY,fast_casual,Spice Route,Indian
+261,Pita House - Brooklyn,Staten Island,NY,qsr,Pita House,Mediterranean
+262,Golden Dragon - Manhattan,Upper East Side,NY,casual_dining,Golden Dragon,Chinese
+263,Caffeine Fix - East Village,Chelsea,NY,qsr,Caffeine Fix,Coffee/Dessert
+264,Fiesta Kitchen - Upper East Side,DUMBO,NY,casual_dining,Fiesta Kitchen,Mexican
+265,Ramen House - Manhattan,Brooklyn,NY,fast_casual,Ramen House,Japanese
+266,Ramen House - Astoria,East Village,NY,qsr,Ramen House,Japanese
+267,El Mexicano - Chelsea,Upper West Side,NY,qsr,El Mexicano,Mexican
+268,The Mi Amigo Corner,Staten Island,NY,casual_dining,,Mexican
+269,Yuki,Staten Island,NY,casual_dining,,Japanese
+270,Salsa Verde - East Village,East Village,NY,qsr,Salsa Verde,Mexican
+271,Chef's Hana Table,East Village,NY,fast_casual,,Japanese
+272,Little Bean Grill,SoHo,NY,qsr,,Coffee/Dessert
+273,El Mexicano - Upper East Side,Staten Island,NY,fine_dining,El Mexicano,Mexican
+274,Bangkok Kitchen - Staten Island,Chelsea,NY,qsr,Bangkok Kitchen,Thai
+275,Trattoria Sol - Manhattan,West Village,NY,casual_dining,Trattoria Sol,Italian
+276,The Roast,Financial District,NY,qsr,,Coffee/Dessert
+277,Sweet Spot - West Village,Staten Island,NY,fine_dining,Sweet Spot,Coffee/Dessert
+278,Napoli Kitchen - Upper West Side,Long Island City,NY,fine_dining,Napoli Kitchen,Italian
+279,American Table - Chelsea,DUMBO,NY,casual_dining,American Table,American
+280,American Table - Park Slope,Brooklyn,NY,casual_dining,American Table,American
+281,Little Lotus Kitchen,Queens,NY,fast_casual,,Chinese
+282,Uncle Seoul Spot,Midtown,NY,qsr,,Korean
+283,Little Pita Corner,Manhattan,NY,qsr,,Mediterranean
+284,Cantina,West Village,NY,casual_dining,,Mexican
+285,Feta House,Chelsea,NY,fast_casual,,Mediterranean
+286,Caffeine Fix - Staten Island,Bushwick,NY,casual_dining,Caffeine Fix,Coffee/Dessert
+287,Fiesta Kitchen - DUMBO,Bushwick,NY,fast_casual,Fiesta Kitchen,Mexican
+288,Sweet Spot - Brooklyn,Staten Island,NY,fast_casual,Sweet Spot,Coffee/Dessert
+289,Bean & Brew - West Village,Manhattan,NY,qsr,Bean & Brew,Coffee/Dessert
+290,Olive Tree - DUMBO,Astoria,NY,casual_dining,Olive Tree,Mediterranean
+291,Masala Express - Brooklyn,Bronx,NY,fine_dining,Masala Express,Indian
+292,Chef's Sam's Corner,Manhattan,NY,fast_casual,,American
+293,The Diner Co - Upper West Side,Staten Island,NY,casual_dining,The Diner Co,American
+294,Izakaya NYC - Upper East Side,Financial District,NY,qsr,Izakaya NYC,Japanese
+295,Korean Grill - East Village,Astoria,NY,casual_dining,Korean Grill,Korean
+296,Masala Express - DUMBO,DUMBO,NY,casual_dining,Masala Express,Indian
+297,Tokyo Kitchen - Queens,Harlem,NY,fast_casual,Tokyo Kitchen,Japanese
+298,Bean & Brew - Financial District,Park Slope,NY,fine_dining,Bean & Brew,Coffee/Dessert
+299,Chef's Athens Grill,Chelsea,NY,casual_dining,,Mediterranean
+300,Caffeine Fix - Long Island City,Harlem,NY,fast_casual,Caffeine Fix,Coffee/Dessert
+301,Mama's Mi Amigo Kitchen,Brooklyn,NY,fast_casual,,Mexican
+302,Little Han Table,Bushwick,NY,qsr,,Korean
+303,El Sol Spot,Tribeca,NY,casual_dining,,Mexican
+304,Kimchi Corner - SoHo,Tribeca,NY,casual_dining,Kimchi Corner,Korean
+305,The Bakery - Long Island City,Queens,NY,fine_dining,The Bakery,Coffee/Dessert
+306,Golden Dragon - Williamsburg,Upper West Side,NY,qsr,Golden Dragon,Chinese
+307,Taco Loco - Astoria,Long Island City,NY,casual_dining,Taco Loco,Mexican
+308,Classic Spot,Brooklyn,NY,fine_dining,,American
+309,Salsa Verde - East Village,Bronx,NY,qsr,Salsa Verde,Mexican
+310,Korean Grill - Bronx,SoHo,NY,casual_dining,Korean Grill,Korean
+311,Uncle Lotus Table,Long Island City,NY,casual_dining,,Chinese
+312,Aegean Kitchen - Astoria,Bronx,NY,fast_casual,Aegean Kitchen,Mediterranean
+313,Chef's Han House,Queens,NY,casual_dining,,Korean
+314,The Luigi's Table,Upper East Side,NY,casual_dining,,Italian
+315,El Sol House,Upper East Side,NY,fast_casual,,Mexican
+316,Mama's Gangnam Table,Bronx,NY,fast_casual,,Korean
+317,Dessert Bar - Upper East Side,Long Island City,NY,casual_dining,Dessert Bar,Coffee/Dessert
+318,Mama's Espresso Grill,Park Slope,NY,fast_casual,,Coffee/Dessert
+319,Mumbai Kitchen - Harlem,Midtown,NY,qsr,Mumbai Kitchen,Indian
+320,Tokyo Kitchen - Bronx,Queens,NY,qsr,Tokyo Kitchen,Japanese
+321,Caffeine Fix - Upper East Side,SoHo,NY,casual_dining,Caffeine Fix,Coffee/Dessert
+322,Spice Route - Upper West Side,Queens,NY,casual_dining,Spice Route,Indian
+323,Uncle Feta,Brooklyn,NY,fast_casual,,Mediterranean
+324,Lucky Bowl - Staten Island,Midtown,NY,fine_dining,Lucky Bowl,Chinese
+325,The Nonna's Bistro,Brooklyn,NY,qsr,,Italian
+326,The Seoul Table,Brooklyn,NY,qsr,,Korean
+327,Han,Harlem,NY,casual_dining,,Korean
+328,Joe's Grill,Harlem,NY,qsr,,American
+329,The Espresso House,Financial District,NY,fast_casual,,Coffee/Dessert
+330,Mama's Lotus Bistro,Staten Island,NY,fine_dining,,Chinese
+331,Masala Express - Bushwick,Upper East Side,NY,casual_dining,Masala Express,Indian
+332,Mediterranean Grill - Upper East Side,Williamsburg,NY,casual_dining,Mediterranean Grill,Mediterranean
+333,Tokyo Kitchen - East Village,Queens,NY,casual_dining,Tokyo Kitchen,Japanese
+334,Big Sugar Place,Long Island City,NY,fast_casual,,Coffee/Dessert
+335,Chef's Masala Cafe,Bushwick,NY,fast_casual,,Indian
+336,Dessert Bar - Staten Island,Midtown,NY,qsr,Dessert Bar,Coffee/Dessert
+337,The Luigi's Spot,Upper West Side,NY,qsr,,Italian
+338,Burgersmith - Brooklyn,Staten Island,NY,casual_dining,Burgersmith,American
+339,Salsa Verde - Brooklyn,DUMBO,NY,fine_dining,Salsa Verde,Mexican
+340,Olive Tree - Staten Island,Upper West Side,NY,fast_casual,Olive Tree,Mediterranean
+341,Chef's Bangkok Cafe,DUMBO,NY,casual_dining,,Thai
+342,Little Bean Corner,Williamsburg,NY,fast_casual,,Coffee/Dessert
+343,Tokyo Kitchen - Midtown,Bronx,NY,qsr,Tokyo Kitchen,Japanese
+344,American Table - Tribeca,Manhattan,NY,fast_casual,American Table,American
+345,Sakura Grill - SoHo,Tribeca,NY,fast_casual,Sakura Grill,Japanese
+346,Big Nonna's Bistro,Midtown,NY,casual_dining,,Italian
+347,Golden Dragon - Staten Island,Chelsea,NY,qsr,Golden Dragon,Chinese
+348,Salsa Verde - Harlem,Astoria,NY,fine_dining,Salsa Verde,Mexican
+349,Big Spice Table,East Village,NY,casual_dining,,Indian
+350,Tokyo Kitchen - West Village,Williamsburg,NY,casual_dining,Tokyo Kitchen,Japanese
+351,Fiesta Kitchen - Staten Island,East Village,NY,casual_dining,Fiesta Kitchen,Mexican
+352,Fiesta Kitchen - Bronx,DUMBO,NY,fast_casual,Fiesta Kitchen,Mexican
+353,Trattoria Sol - Park Slope,Chelsea,NY,qsr,Trattoria Sol,Italian
+354,Pita House - East Village,Queens,NY,qsr,Pita House,Mediterranean
+355,Uncle Gangnam,Upper West Side,NY,casual_dining,,Korean
+356,Lemongrass - DUMBO,Upper West Side,NY,casual_dining,Lemongrass,Thai
+357,Uncle Orchid Grill,Williamsburg,NY,qsr,,Thai
+358,El Sol Table,Brooklyn,NY,casual_dining,,Mexican
+359,Casa Grande - Queens,Upper East Side,NY,casual_dining,Casa Grande,Mexican
+360,Classic Eats - Midtown,Queens,NY,qsr,Classic Eats,American
+361,Mumbai Kitchen - Bushwick,Staten Island,NY,fast_casual,Mumbai Kitchen,Indian
+362,The Thai House,Manhattan,NY,fine_dining,,Thai
+363,The Masala Bistro,Brooklyn,NY,qsr,,Indian
+364,Classic Spot,Upper East Side,NY,qsr,,American
+365,Kimchi Corner - Park Slope,Long Island City,NY,fast_casual,Kimchi Corner,Korean
+366,Chef's Cantina Grill,SoHo,NY,qsr,,Mexican
+367,Little K- Spot,Staten Island,NY,fast_casual,,Korean
+368,Korean Grill - DUMBO,Upper West Side,NY,fine_dining,Korean Grill,Korean
+369,Lucky Bowl - Astoria,Queens,NY,casual_dining,Lucky Bowl,Chinese
+370,The Diner Co - Upper East Side,Manhattan,NY,qsr,The Diner Co,American
+371,Pita House - Queens,Williamsburg,NY,casual_dining,Pita House,Mediterranean
+372,Sakura Grill - SoHo,SoHo,NY,casual_dining,Sakura Grill,Japanese
+373,Mumbai Kitchen - Upper East Side,Financial District,NY,fast_casual,Mumbai Kitchen,Indian
+374,Uncle Cantina House,Williamsburg,NY,qsr,,Mexican
+375,Ramen House - Financial District,Financial District,NY,casual_dining,Ramen House,Japanese
+376,Lemongrass - Manhattan,West Village,NY,qsr,Lemongrass,Thai
+377,Masala Express - West Village,Brooklyn,NY,qsr,Masala Express,Indian
+378,Burgersmith - Upper East Side,Staten Island,NY,casual_dining,Burgersmith,American
+379,The Diner Co - Upper West Side,Long Island City,NY,qsr,The Diner Co,American
+380,Mama's Classic Grill,Harlem,NY,casual_dining,,American
+381,Big Lotus Corner,Staten Island,NY,casual_dining,,Thai
+382,Thai Spice - Chelsea,Upper East Side,NY,casual_dining,Thai Spice,Thai
+383,Uncle Sakura Cafe,Tribeca,NY,fine_dining,,Japanese
+384,Little Italy - Upper East Side,Staten Island,NY,casual_dining,Little Italy,Italian
+385,Burgersmith - Chelsea,SoHo,NY,qsr,Burgersmith,American
+386,Mama's Feta House,Harlem,NY,fine_dining,,Mediterranean
+387,Chef's Sugar Spot,Bronx,NY,casual_dining,,Coffee/Dessert
+388,Pita House - West Village,Chelsea,NY,qsr,Pita House,Mediterranean
+389,Big Espresso Grill,SoHo,NY,casual_dining,,Coffee/Dessert
+390,Lucky Bowl - Chelsea,Astoria,NY,fast_casual,Lucky Bowl,Chinese
+391,Chef's Lucky,Tribeca,NY,casual_dining,,Chinese
+392,The Gangnam Corner,Bronx,NY,fast_casual,,Korean
+393,The K- Table,West Village,NY,casual_dining,,Korean
+394,Sam's House,Astoria,NY,fast_casual,,American
+395,American,Midtown,NY,fast_casual,,American
+396,Bella Cucina - Manhattan,Williamsburg,NY,fast_casual,Bella Cucina,Italian
+397,Golden Dragon - Williamsburg,Queens,NY,casual_dining,Golden Dragon,Chinese
+398,Burgersmith - Bronx,East Village,NY,fine_dining,Burgersmith,American
+399,Mama's Milano Grill,Upper East Side,NY,fast_casual,,Italian
+400,Chef's Han Table,Queens,NY,casual_dining,,Korean
+401,Korean Grill - West Village,Bronx,NY,casual_dining,Korean Grill,Korean
+402,The Sweet Bistro,DUMBO,NY,fast_casual,,Coffee/Dessert
+403,Bangkok Kitchen - Bushwick,Astoria,NY,qsr,Bangkok Kitchen,Thai
+404,Sweet Spot - Midtown,Bushwick,NY,fast_casual,Sweet Spot,Coffee/Dessert
+405,Chef's Dragon Corner,Brooklyn,NY,fast_casual,,Chinese
+406,Bella Cucina - Chelsea,Financial District,NY,casual_dining,Bella Cucina,Italian
+407,Tandoori Palace - SoHo,Park Slope,NY,fast_casual,Tandoori Palace,Indian
+408,Taco Loco - Harlem,Park Slope,NY,fast_casual,Taco Loco,Mexican
+409,Golden Dragon - Manhattan,Bushwick,NY,qsr,Golden Dragon,Chinese
+410,Bangkok Cafe,Brooklyn,NY,casual_dining,,Thai
+411,Jade Garden - Queens,Astoria,NY,fast_casual,Jade Garden,Chinese
+412,Bangkok Corner,Williamsburg,NY,fine_dining,,Thai
+413,Burgersmith - DUMBO,Upper East Side,NY,qsr,Burgersmith,American
+414,Uncle Classic Table,Staten Island,NY,fast_casual,,American
+415,Uncle Milano Table,Financial District,NY,fast_casual,,Italian
+416,Sweet Spot - Chelsea,Long Island City,NY,qsr,Sweet Spot,Coffee/Dessert
+417,Mama's Basil Corner,DUMBO,NY,fine_dining,,Thai
+418,K-BBQ House - Midtown,Financial District,NY,casual_dining,K-BBQ House,Korean
+419,Lucky Bowl - Queens,Midtown,NY,fast_casual,Lucky Bowl,Chinese
+420,Mama's Pita Table,Midtown,NY,casual_dining,,Mediterranean
+421,Taco Loco - East Village,Financial District,NY,fast_casual,Taco Loco,Mexican
+422,Siam Garden - Long Island City,Upper West Side,NY,fast_casual,Siam Garden,Thai
+423,K-BBQ House - Chelsea,Queens,NY,fast_casual,K-BBQ House,Korean
+424,Little Italy - Astoria,Upper East Side,NY,casual_dining,Little Italy,Italian
+425,Aegean Kitchen - Long Island City,Upper East Side,NY,qsr,Aegean Kitchen,Mediterranean
+426,Little Athens House,Manhattan,NY,casual_dining,,Mediterranean
+427,Chef's Aegean,Financial District,NY,fast_casual,,Mediterranean
+428,Aegean Kitchen - Brooklyn,Williamsburg,NY,qsr,Aegean Kitchen,Mediterranean
+429,Jade Garden - Park Slope,Long Island City,NY,fine_dining,Jade Garden,Chinese
+430,Mama's Classic Cafe,West Village,NY,qsr,,American
+431,Little Lotus House,SoHo,NY,qsr,,Thai
+432,Big Gangnam Corner,Staten Island,NY,fast_casual,,Korean
+433,Fiesta Kitchen - Astoria,Harlem,NY,casual_dining,Fiesta Kitchen,Mexican
+434,Bangkok Kitchen - Upper East Side,Brooklyn,NY,casual_dining,Bangkok Kitchen,Thai
+435,Spice Route - Bronx,Queens,NY,fast_casual,Spice Route,Indian
+436,Curry House - Harlem,Queens,NY,fine_dining,Curry House,Indian
+437,The American Corner,Staten Island,NY,fast_casual,,American
+438,Sushi Zen - DUMBO,Astoria,NY,casual_dining,Sushi Zen,Japanese
+439,Mama's La Casa Table,SoHo,NY,casual_dining,,Mexican
+440,Big American Place,Williamsburg,NY,casual_dining,,American
+441,Uncle Sugar,Manhattan,NY,fast_casual,,Coffee/Dessert
+442,Tandoori Palace - DUMBO,Tribeca,NY,fast_casual,Tandoori Palace,Indian
+443,Salsa Verde - SoHo,Midtown,NY,qsr,Salsa Verde,Mexican
+444,The Sugar Place,Bushwick,NY,qsr,,Coffee/Dessert
+445,Classic Eats - Chelsea,Long Island City,NY,casual_dining,Classic Eats,American
+446,Trattoria Sol - Bushwick,Staten Island,NY,fast_casual,Trattoria Sol,Italian
+447,Sakura Grill - Harlem,SoHo,NY,fine_dining,Sakura Grill,Japanese
+448,The Aegean Kitchen,West Village,NY,fast_casual,,Mediterranean
+449,Uncle Yuki Cafe,Midtown,NY,casual_dining,,Japanese
+450,K-BBQ House - Williamsburg,Bronx,NY,fine_dining,K-BBQ House,Korean
+451,Chef's Sakura Cafe,East Village,NY,fast_casual,,Japanese
+452,Big Mi Amigo Spot,Park Slope,NY,fine_dining,,Mexican
+453,American Corner,DUMBO,NY,casual_dining,,American
+454,Grill House - SoHo,Midtown,NY,qsr,Grill House,American
+455,Burgersmith - West Village,Harlem,NY,casual_dining,Burgersmith,American
+456,Mama's Yuki Cafe,Midtown,NY,casual_dining,,Japanese
+457,Thai Orchid - Brooklyn,Midtown,NY,casual_dining,Thai Orchid,Thai
+458,Mumbai Kitchen - West Village,Astoria,NY,fast_casual,Mumbai Kitchen,Indian
+459,Chef's Gangnam Kitchen,Astoria,NY,qsr,,Korean
+460,El Mexicano - Chelsea,West Village,NY,fast_casual,El Mexicano,Mexican
+461,Little Roast Place,West Village,NY,fast_casual,,Coffee/Dessert
+462,Mama's La Casa Bistro,Bronx,NY,fast_casual,,Mexican
+463,Jade Garden - Queens,Chelsea,NY,fine_dining,Jade Garden,Chinese
+464,Little Bombay Place,Manhattan,NY,casual_dining,,Indian
+465,Sushi Zen - Financial District,Chelsea,NY,qsr,Sushi Zen,Japanese
+466,Classic Kitchen,Bronx,NY,qsr,,American
+467,Mama's Thai Bistro,Harlem,NY,casual_dining,,Thai
+468,Uncle Curry Table,Long Island City,NY,casual_dining,,Indian
+469,Salsa Verde - Brooklyn,Brooklyn,NY,qsr,Salsa Verde,Mexican
+470,Little Luigi's Bistro,Williamsburg,NY,fine_dining,,Italian
+471,Golden Dragon - Long Island City,Williamsburg,NY,fast_casual,Golden Dragon,Chinese
+472,Bangkok Kitchen - Staten Island,Bushwick,NY,fast_casual,Bangkok Kitchen,Thai
+473,El Mexicano - Park Slope,Midtown,NY,fast_casual,El Mexicano,Mexican
+474,Classic Eats - West Village,Williamsburg,NY,qsr,Classic Eats,American
+475,Sakura Grill - Park Slope,Williamsburg,NY,fine_dining,Sakura Grill,Japanese
+476,Mama's Yuki Place,Financial District,NY,casual_dining,,Japanese
+477,Mama's Mario's House,Staten Island,NY,fine_dining,,Italian
+478,Pasta Prima - Midtown,Bronx,NY,fine_dining,Pasta Prima,Italian
+479,Ramen House - Manhattan,Manhattan,NY,casual_dining,Ramen House,Japanese
+480,Uncle Joe's Grill,Staten Island,NY,fine_dining,,American
+481,Uncle Milano Corner,Upper West Side,NY,fine_dining,,Italian
+482,Izakaya NYC - Tribeca,Chelsea,NY,fast_casual,Izakaya NYC,Japanese
+483,Lucky Bowl - DUMBO,SoHo,NY,fast_casual,Lucky Bowl,Chinese
+484,Uncle Mi Amigo House,DUMBO,NY,casual_dining,,Mexican
+485,Burgersmith - Park Slope,DUMBO,NY,fast_casual,Burgersmith,American
+486,Kimchi Corner - East Village,Brooklyn,NY,fast_casual,Kimchi Corner,Korean
+487,Classic Eats - Williamsburg,Upper East Side,NY,fine_dining,Classic Eats,American
+488,K-BBQ House - Park Slope,Bushwick,NY,fast_casual,K-BBQ House,Korean
+489,Korean Grill - Brooklyn,SoHo,NY,casual_dining,Korean Grill,Korean
+490,Mediterranean Grill - Park Slope,East Village,NY,qsr,Mediterranean Grill,Mediterranean
+491,Grill House - Astoria,East Village,NY,qsr,Grill House,American
+492,Jade Garden - Queens,Tribeca,NY,qsr,Jade Garden,Chinese
+493,The El Sol House,Chelsea,NY,fast_casual,,Mexican
+494,Mama's Masala Kitchen,West Village,NY,qsr,,Indian
+495,Dynasty Kitchen - Chelsea,Brooklyn,NY,qsr,Dynasty Kitchen,Chinese
+496,Seoul Kitchen - Harlem,Brooklyn,NY,fast_casual,Seoul Kitchen,Korean
+497,Masala Place,East Village,NY,casual_dining,,Indian
+498,Pita House - Financial District,Upper West Side,NY,casual_dining,Pita House,Mediterranean
+499,Siam Garden - Chelsea,Williamsburg,NY,casual_dining,Siam Garden,Thai
+500,Mediterranean Grill - Chelsea,Manhattan,NY,fine_dining,Mediterranean Grill,Mediterranean

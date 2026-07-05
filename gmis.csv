@@ -1,0 +1,56 @@
+gmi_id,gmi_name,category
+1,burger,Entree
+2,pizza,Entree
+3,pasta,Entree
+4,taco,Entree
+5,burrito,Entree
+6,sushi,Entree
+7,ramen,Entree
+8,bibimbap,Entree
+9,pad thai,Entree
+10,tikka masala,Entree
+11,fried rice,Entree
+12,falafel,Entree
+13,shawarma,Entree
+14,kebab,Entree
+15,spring roll,Appetizer
+16,egg roll,Appetizer
+17,dumplings,Appetizer
+18,samosa,Appetizer
+19,bruschetta,Appetizer
+20,edamame,Appetizer
+21,nachos,Appetizer
+22,hummus,Appetizer
+23,gyoza,Appetizer
+24,pakora,Appetizer
+25,fries,Side
+26,rice,Side
+27,coleslaw,Side
+28,salad,Side
+29,naan,Side
+30,kimchi,Side
+31,mac & cheese,Side
+32,donut,Dessert
+33,tiramisu,Dessert
+34,cheesecake,Dessert
+35,brownie,Dessert
+36,gelato,Dessert
+37,churros,Dessert
+38,baklava,Dessert
+39,mango sticky rice,Dessert
+40,cookie,Dessert
+41,muffin,Dessert
+42,latte,Beverage
+43,cappuccino,Beverage
+44,espresso,Beverage
+45,cold brew,Beverage
+46,horchata,Beverage
+47,thai iced tea,Beverage
+48,matcha,Beverage
+49,milkshake,Beverage
+50,soju cocktail,Beverage
+51,ramen,Soup
+52,tom yum,Soup
+53,miso soup,Soup
+54,wonton soup,Soup
+55,dal,Soup

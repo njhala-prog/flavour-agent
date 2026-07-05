@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Interview Assignment</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --bg-dark: #1e293b;
+            --bg-light: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --code-bg: #f1f5f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #334155 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        header .container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        main {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        li strong {
+            color: var(--text-primary);
+        }
+
+        code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+            color: var(--primary-dark);
+        }
+
+        pre {
+            background: var(--bg-dark);
+            color: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: 0.85rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th {
+            background: var(--code-bg);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .data-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .agent-card h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .agent-card p {
+            margin-bottom: 0.75rem;
+        }
+
+        .agent-card ul {
+            margin: 0.5rem 0;
+        }
+
+        .deliverables {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .deliverables h3 {
+            color: #b45309;
+            margin-top: 0;
+        }
+
+        .evaluation {
+            background: #fce7f3;
+            border: 1px solid #f9a8d4;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .evaluation h3 {
+            color: #be185d;
+            margin-top: 0;
+        }
+
+        .graph-example {
+            background: var(--code-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .file-item {
+            background: var(--code-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .file-item .name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'SF Mono', Consolas, monospace;
+        }
+
+        .file-item .desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .file-item .rows {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Menu<span>Data</span></div>
+            <h1>Software Engineering Interview Assignment</h1>
+            <div>
+                <span class="badge">Take-Home</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2>Overview</h2>
+            <p>
+                Welcome to the software engineering take-home assignment. In this exercise, you will build an
+                <strong>AI-powered marketing insights agent</strong> that analyzes restaurant menu data to discover
+                flavor trends, ingredient combinations, and innovation opportunities.
+            </p>
+
+            <div class="highlight">
+                <p>
+                    <strong>Your Mission:</strong> Build an intelligent agent that can answer questions about menu trends,
+                    flavor combinations, and market opportunities using a Neo4j graph database and an LLM. Then create an
+                    evaluation suite using Braintrust to measure the agent's performance.
+                </p>
+            </div>
+
+            <h2>Provided Data</h2>
+            <p>
+                We're providing you with a dataset of ~50,000 menu items from 500 NYC restaurants, including ingredient
+                mappings and generalized menu item (GMI) classifications.
+            </p>
+
+            <div class="file-list">
+                <div class="file-item">
+                    <span class="name">menu_items.csv</span>
+                    <span class="desc">Menu items with restaurant info</span>
+                    <span class="rows">50,000 rows</span>
+                </div>
+                <div class="file-item">
+                    <span class="name">restaurants.csv</span>
+                    <span class="desc">Restaurant locations & types</span>
+                    <span class="rows">500 rows</span>
+                </div>
+                <div class="file-item">
+                    <span class="name">ingredients.csv</span>
+                    <span class="desc">Ingredient taxonomy</span>
+                    <span class="rows">159 rows</span>
+                </div>
+                <div class="file-item">
+                    <span class="name">gmis.csv</span>
+                    <span class="desc">Generalized Menu Items</span>
+                    <span class="rows">55 rows</span>
+                </div>
+                <div class="file-item">
+                    <span class="name">item_ingredients.csv</span>
+                    <span class="desc">Item-to-ingredient mappings</span>
+                    <span class="rows">151,163 rows</span>
+                </div>
+            </div>
+
+            <h3>Data Schema</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Key Columns</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>menu_items.csv</code></td>
+                        <td>item_id, menu_item_name, description, price, restaurant_id, restaurant_name, city, state, restaurant_type, chain_name, gmi_name</td>
+                    </tr>
+                    <tr>
+                        <td><code>restaurants.csv</code></td>
+                        <td>restaurant_id, business_name, city, state, restaurant_type, chain_name, cuisine</td>
+                    </tr>
+                    <tr>
+                        <td><code>ingredients.csv</code></td>
+                        <td>ingredient_id, ingredient_name, category (protein, vegetable, dairy, grain, sauce, spice, fruit, sweetener, oil, nut)</td>
+                    </tr>
+                    <tr>
+                        <td><code>gmis.csv</code></td>
+                        <td>gmi_id, gmi_name, category (Entree, Appetizer, Side, Dessert, Beverage, Soup)</td>
+                    </tr>
+                    <tr>
+                        <td><code>item_ingredients.csv</code></td>
+                        <td>item_id, ingredient_id, ingredient_name, ingredient_category</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Part 1: Neo4j Graph Model Design</h2>
+            <p>
+                Design and implement a Neo4j graph database model to represent the menu data. Your model should enable
+                efficient queries about flavor combinations, ingredient relationships, and menu item patterns.
+            </p>
+
+            <h3>Starter Ideas (Build on These)</h3>
+            <div class="graph-example">
+(:Restaurant)-[:SERVES]->(:MenuItem)<br>
+(:MenuItem)-[:CONTAINS]->(:Ingredient)<br>
+(:MenuItem)-[:IS_TYPE]->(:GMI)<br>
+(:Ingredient)-[:CATEGORY]->(:IngredientCategory)<br>
+(:Restaurant)-[:LOCATED_IN]->(:Neighborhood)<br>
+(:Restaurant)-[:CUISINE_TYPE]->(:Cuisine)
+            </div>
+
+            <p>Consider adding relationships such as:</p>
+            <ul>
+                <li><strong>Ingredient Co-occurrence:</strong> <code>(:Ingredient)-[:PAIRS_WITH {frequency: N}]->(:Ingredient)</code></li>
+                <li><strong>Flavor Profiles:</strong> Group ingredients by flavor characteristics (spicy, sweet, savory, umami)</li>
+                <li><strong>Price Tiers:</strong> Connect items to price ranges for market positioning analysis</li>
+                <li><strong>Chain Relationships:</strong> Model multi-location restaurant chains</li>
+            </ul>
+
+            <h2>Part 2: Build Your Agent</h2>
+            <p>
+                Choose <strong>one</strong> of the following agent types to implement. Your agent should use the Neo4j
+                graph database and an LLM to generate insights.
+            </p>
+
+            <div class="agent-card">
+                <h4>Agent Option A: Flavor Innovation Agent</h4>
+                <p>
+                    An agent that discovers emerging flavor combinations and innovation opportunities by analyzing
+                    ingredient co-occurrence patterns across different cuisines and restaurant types.
+                </p>
+                <p><strong>Example Questions the Agent Should Answer:</strong></p>
+                <ul>
+                    <li>"What unexpected ingredient combinations are appearing in Brooklyn fine dining?"</li>
+                    <li>"Which Asian fusion flavor pairings are crossing over to American cuisine?"</li>
+                    <li>"Find emerging spice combinations in fast-casual Mexican restaurants"</li>
+                    <li>"What ingredients pair well with yuzu that aren't commonly used?"</li>
+                    <li>"Identify white-space opportunities: ingredients popular in Japanese cuisine missing from Korean menus"</li>
+                </ul>
+            </div>
+
+            <div class="agent-card">
+                <h4>Agent Option B: Market Intelligence Agent</h4>
+                <p>
+                    An agent that generates competitive intelligence and market positioning insights by analyzing menu
+                    pricing, item distribution, and regional trends.
+                </p>
+                <p><strong>Example Questions the Agent Should Answer:</strong></p>
+                <ul>
+                    <li>"How do burger prices vary between QSR and casual dining in Manhattan vs Brooklyn?"</li>
+                    <li>"Which GMI categories are over-indexed in the East Village compared to Midtown?"</li>
+                    <li>"What menu items do successful Italian restaurants have that struggling ones don't?"</li>
+                    <li>"Find price gaps: dishes that could be offered at premium prices based on ingredient quality"</li>
+                    <li>"Compare ingredient sophistication between chain restaurants and independents"</li>
+                </ul>
+            </div>
+
+            <h3>Technical Requirements</h3>
+            <ul>
+                <li>Use <strong>Neo4j</strong> as your graph database (local Docker instance or Neo4j Aura free tier)</li>
+                <li>Use any LLM provider (OpenAI, Anthropic, etc.) for the agent reasoning</li>
+                <li>The agent should translate natural language questions into Cypher queries</li>
+                <li>The agent should synthesize query results into actionable insights</li>
+                <li>Include error handling for malformed queries and edge cases</li>
+            </ul>
+
+            <h2>Part 3: Evaluation Suite with Braintrust</h2>
+            <p>
+                Create an evaluation suite using <a href="https://braintrust.dev" target="_blank">Braintrust</a> to measure
+                your agent's performance. This is critical for iterating on agent quality.
+            </p>
+
+            <h3>Evaluation Dimensions</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Description</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Accuracy</strong></td>
+                        <td>Does the answer correctly reflect the data? Are statistics accurate?</td>
+                        <td>30%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relevance</strong></td>
+                        <td>Does the response directly answer the question asked?</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Creativity</strong></td>
+                        <td>Does the agent surface non-obvious insights? Make unexpected connections?</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Latency</strong></td>
+                        <td>Response time (aim for < 10 seconds for typical queries)</td>
+                        <td>20%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Test Cases to Include</h3>
+            <p>Create at least <strong>15 test cases</strong> covering:</p>
+            <ul>
+                <li>Simple lookups (e.g., "What are the most common ingredients in ramen?")</li>
+                <li>Comparative queries (e.g., "Compare pizza toppings between Italian and American restaurants")</li>
+                <li>Trend analysis (e.g., "What flavors are trending in desserts?")</li>
+                <li>Cross-cuisine insights (e.g., "Find fusion opportunities between Thai and Mexican")</li>
+                <li>Edge cases (ambiguous queries, empty results, very broad questions)</li>
+            </ul>
+
+            <div class="deliverables">
+                <h3>Deliverables</h3>
+                <ol>
+                    <li><strong>Neo4j Data Model</strong> - Cypher scripts to create your graph schema and load the data</li>
+                    <li><strong>Agent Implementation</strong> - Python code for your chosen agent with clear documentation</li>
+                    <li><strong>Braintrust Evaluation</strong> - Evaluation suite with 15+ test cases and scoring functions</li>
+                    <li><strong>README</strong> - Setup instructions, architecture decisions, and sample outputs</li>
+                    <li><strong>Demo Queries</strong> - 5 interesting queries with their outputs showcasing your agent's capabilities</li>
+                </ol>
+            </div>
+
+            <div class="evaluation">
+                <h3>How We'll Evaluate Your Submission</h3>
+                <ul>
+                    <li><strong>Graph Model Design (25%)</strong> - Is the model well-suited for the queries? Efficient? Extensible?</li>
+                    <li><strong>Agent Quality (30%)</strong> - Does it produce useful, accurate insights? Handle edge cases?</li>
+                    <li><strong>Evaluation Suite (25%)</strong> - Are the test cases comprehensive? Are the scoring functions meaningful?</li>
+                    <li><strong>Code Quality (20%)</strong> - Clean, readable, well-documented code with proper error handling</li>
+                </ul>
+            </div>
+
+            <h2>Getting Started</h2>
+
+            <h3>1. Set Up Neo4j</h3>
+            <pre><code># Using Docker
+docker run -d \
+  --name neo4j \
+  -p 7474:7474 -p 7687:7687 \
+  -e NEO4J_AUTH=neo4j/password \
+  neo4j:latest
+
+# Or use Neo4j Aura free tier: https://neo4j.com/cloud/aura/</code></pre>
+
+            <h3>2. Load the Data</h3>
+            <pre><code>// Example: Create Restaurant nodes
+LOAD CSV WITH HEADERS FROM 'file:///restaurants.csv' AS row
+CREATE (:Restaurant {
+  id: toInteger(row.restaurant_id),
+  name: row.business_name,
+  city: row.city,
+  state: row.state,
+  type: row.restaurant_type,
+  cuisine: row.cuisine
+});</code></pre>
+
+            <h3>3. Set Up Braintrust</h3>
+            <pre><code>pip install braintrust
+
+# Initialize your project
+import braintrust
+braintrust.init(project="menudata-insights-agent")</code></pre>
+
+            <h3>4. Example Agent Structure</h3>
+            <pre><code>from neo4j import GraphDatabase
+import openai  # or anthropic
+
+class MenuInsightsAgent:
+    def __init__(self, neo4j_uri, neo4j_auth):
+        self.driver = GraphDatabase.driver(neo4j_uri, auth=neo4j_auth)
+        self.llm = openai.OpenAI()
+
+    def query(self, user_question: str) -> str:
+        # 1. Use LLM to generate Cypher query
+        cypher = self._generate_cypher(user_question)
+
+        # 2. Execute query against Neo4j
+        results = self._execute_cypher(cypher)
+
+        # 3. Use LLM to synthesize insights
+        response = self._synthesize_response(user_question, results)
+
+        return response
+
+    def _generate_cypher(self, question: str) -> str:
+        # Your implementation here
+        pass
+
+    def _execute_cypher(self, cypher: str) -> list:
+        # Your implementation here
+        pass
+
+    def _synthesize_response(self, question: str, data: list) -> str:
+        # Your implementation here
+        pass</code></pre>
+
+            <h2>Tips for Success</h2>
+            <ul>
+                <li><strong>Start simple.</strong> Get a basic agent working before adding complexity.</li>
+                <li><strong>Think about indexes.</strong> Neo4j queries perform better with proper indexes on frequently-queried properties.</li>
+                <li><strong>Use Braintrust early.</strong> Don't wait until the end to set up evaluation - use it to iterate.</li>
+                <li><strong>Document your decisions.</strong> We want to understand your thought process.</li>
+                <li><strong>Show creativity.</strong> The graph model and insights are where you can stand out.</li>
+            </ul>
+
+            <h2>Questions?</h2>
+            <p>
+                If you have any questions about the assignment, please reach out to your hiring contact. Good luck!
+            </p>
+        </main>
+
+        <footer>
+            <p>&copy;  This is a confidential interview assignment.</p>
+        </footer>
+    </div>
+</body>
+</html>

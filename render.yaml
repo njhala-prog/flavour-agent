@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: flavor-innovation-agent
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NEO4J_URI
+        sync: false          # set manually in Render dashboard
+      - key: NEO4J_USER
+        sync: false
+      - key: NEO4J_PASSWORD
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: BRAINTRUST_API_KEY
+        sync: false

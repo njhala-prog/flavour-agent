@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flavor Innovation Agent</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f4f5f7;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    header h1 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+    header p  { font-size: 0.82rem; color: #8899bb; }
+
+    .container {
+      max-width: 860px;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #7788aa;
+      margin-bottom: 0.75rem;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid #dde1ea;
+      border-radius: 7px;
+      font-size: 0.97rem;
+      font-family: inherit;
+      color: #1a1a2e;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+      line-height: 1.5;
+    }
+    textarea:focus { border-color: #4a6cf7; }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.6rem;
+    }
+    .char-count { font-size: 0.75rem; color: #aab; }
+
+    button {
+      padding: 0.55rem 1.4rem;
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    button:hover:not(:disabled) { background: #2a2a4e; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ── Loading ── */
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: #556;
+    }
+    .spinner {
+      width: 34px; height: 34px;
+      border: 3px solid #e0e4f0;
+      border-top-color: #1a1a2e;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      margin: 0 auto 0.9rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #loading p { font-size: 0.88rem; }
+
+    /* ── Error ── */
+    #error-box {
+      display: none;
+      background: #fff1f1;
+      border: 1.5px solid #fca5a5;
+      border-radius: 9px;
+      padding: 0.9rem 1.2rem;
+      color: #9b1c1c;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Results ── */
+    #results { display: none; }
+
+    /* Answer */
+    #answer-text {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      color: #1a1a2e;
+    }
+    .meta-row {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: #aab;
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Cypher */
+    pre {
+      background: #0f111a;
+      color: #c9d1d9;
+      padding: 1rem 1.1rem;
+      border-radius: 7px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    /* Raw results table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 7px;
+      border: 1px solid #e8eaee;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    th {
+      text-align: left;
+      padding: 0.5rem 0.85rem;
+      background: #f0f2f7;
+      font-weight: 600;
+      color: #445;
+      border-bottom: 1px solid #dde1ea;
+      white-space: nowrap;
+    }
+    td {
+      padding: 0.45rem 0.85rem;
+      border-bottom: 1px solid #f0f2f5;
+      color: #334;
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* Off-topic notice */
+    .off-topic-card {
+      background: #fffbeb;
+      border: 1.5px solid #fcd34d;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .off-topic-card .card-title { color: #b45309; }
+    .off-topic-card p { font-size: 0.95rem; line-height: 1.7; color: #78350f; white-space: pre-wrap; }
+    tbody tr:hover td { background: #f8f9fc; }
+    .no-rows { color: #99a; font-size: 0.88rem; padding: 0.25rem 0; }
+
+    /* Scores grid */
+    .scores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.9rem;
+    }
+    .score-tile {
+      background: #f7f8fc;
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      text-align: center;
+    }
+    .score-tile.highlight { background: #eef1fd; }
+    .score-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #7788aa;
+      margin-bottom: 0.35rem;
+    }
+    .score-value {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .score-sub {
+      display: inline-block;
+      margin-top: 0.3rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+    .badge-green  { background: #d1fae5; color: #065f46; }
+    .badge-yellow { background: #fef3c7; color: #92400e; }
+    .badge-red    { background: #fee2e2; color: #991b1b; }
+
+    /* ── Scoring legend ── */
+    .scoring-legend {
+      margin-top: 1.1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e8eaee;
+    }
+    .scoring-legend summary {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #99aacc;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .scoring-legend summary::before {
+      content: '▶';
+      font-size: 0.6rem;
+      transition: transform 0.15s;
+    }
+    .scoring-legend[open] summary::before { transform: rotate(90deg); }
+    .scoring-legend dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.45rem 1rem;
+      margin-top: 0.85rem;
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+    .scoring-legend dt {
+      font-weight: 700;
+      color: #334;
+      white-space: nowrap;
+      padding-top: 0.05rem;
+    }
+    .scoring-legend dd { color: #556; }
+    .scoring-legend code {
+      background: #f0f2f7;
+      padding: 0.05rem 0.35rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: #3a4a6a;
+    }
+    .scoring-legend b { color: #1a1a2e; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Flavor Innovation Agent</h1>
+  <p>50,000+ NYC menu items &nbsp;·&nbsp; Neo4j + GPT-4o</p>
+</header>
+
+<div class="container">
+
+  <!-- Input card -->
+  <div class="card">
+    <div class="card-title">Ask a Question</div>
+    <form id="ask-form">
+      <textarea
+        id="question-input"
+        rows="3"
+        maxlength="500"
+        placeholder="e.g. What Asian spices are crossing into American cuisine menus in NYC?"
+      ></textarea>
+      <div class="form-footer">
+        <span class="char-count"><span id="char-count">0</span> / 500</span>
+        <button type="submit" id="submit-btn">Ask</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Generating Cypher, querying Neo4j, synthesizing insight…</p>
+  </div>
+
+  <!-- Error -->
+  <div id="error-box"></div>
+
+  <!-- Results -->
+  <div id="results">
+
+    <div class="card" id="answer-card">
+      <div class="card-title">Answer</div>
+      <p id="answer-text"></p>
+      <div class="meta-row">
+        <span>Request ID: <span id="meta-request-id"></span></span>
+        <span>Retries: <span id="meta-retries"></span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Generated Cypher Query</div>
+      <pre id="cypher-code"></pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Raw Results &nbsp;<span id="row-count-badge" style="font-weight:400;color:#99a;font-size:0.78rem;text-transform:none;letter-spacing:0"></span></div>
+      <div id="rows-container"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Performance &amp; LLM-as-Judge Scores</div>
+      <div class="scores-grid" id="scores-grid"></div>
+
+      <!-- Expandable formula explanation -->
+      <details class="scoring-legend">
+        <summary>How each score is calculated</summary>
+        <dl>
+          <dt>Latency</dt>
+          <dd>
+            Wall-clock time for the full pipeline: input validation → Cypher generation
+            (GPT-4o) → Neo4j query → insight synthesis.
+          </dd>
+
+          <dt>Row Count</dt>
+          <dd>
+            Number of rows returned by the generated Cypher query (capped at 100 by
+            the database layer).
+          </dd>
+
+          <dt>Relevance</dt>
+          <dd>
+            <b>GPT-4o-mini judge</b> — prompt: <em>"Does the answer directly address the question?"</em><br>
+            Verdict → score: <code>YES → 1.0</code> &nbsp; <code>PARTIAL → 0.5</code> &nbsp; <code>NO → 0.0</code>
+          </dd>
+
+          <dt>Creativity</dt>
+          <dd>
+            <b>GPT-4o-mini judge</b> — prompt: <em>"Does the answer surface non-obvious insights beyond a plain list?"</em><br>
+            Verdict → score: <code>HIGH → 1.0</code> &nbsp; <code>MEDIUM → 0.5</code> &nbsp; <code>LOW → 0.0</code>
+          </dd>
+
+          <dt>Latency Score</dt>
+          <dd>
+            Deterministic formula: <code>max(0,&nbsp;1&nbsp;−&nbsp;latency&nbsp;/&nbsp;10)</code> — target ≤ 10 s, score
+            hits 0 at 10 s.<br>
+            Example: 6.7 s → 1 − 6.7/10 = <b>0.330</b>
+          </dd>
+
+          <dt>Composite</dt>
+          <dd>
+            Equal-weighted average of the three scored dimensions:<br>
+            <code>(Relevance + Creativity + Latency Score) / 3</code><br>
+            Example: (1.00 + 1.00 + 0.330) / 3 = <b>0.777</b><br>
+            <em style="font-size:0.75rem;color:#99a">Accuracy is omitted here — no ground-truth assertion is
+            available for ad-hoc questions. The full eval suite (eval/evaluate.py) adds
+            Accuracy (30 %) via result_assertion callables on 20 labelled test cases.</em>
+          </dd>
+        </dl>
+      </details>
+    </div>
+
+  </div><!-- /results -->
+</div><!-- /container -->
+
+<script>
+  const form       = document.getElementById('ask-form');
+  const inputEl    = document.getElementById('question-input');
+  const charCount  = document.getElementById('char-count');
+  const submitBtn  = document.getElementById('submit-btn');
+  const loadingEl  = document.getElementById('loading');
+  const errorBox   = document.getElementById('error-box');
+  const resultsEl  = document.getElementById('results');
+
+  inputEl.addEventListener('input', () => {
+    charCount.textContent = inputEl.value.length;
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const question = inputEl.value.trim();
+    if (!question) return;
+
+    // Reset
+    resultsEl.style.display  = 'none';
+    errorBox.style.display   = 'none';
+    loadingEl.style.display  = 'block';
+    submitBtn.disabled       = true;
+
+    try {
+      const resp = await fetch('/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const data = await resp.json();
+      if (!resp.ok) {
+        const d = data.detail;
+        const msg = Array.isArray(d)
+          ? d.map(e => e.msg).join(' · ')          // Pydantic validation array
+          : (typeof d === 'string' ? d : `HTTP ${resp.status}`);
+        throw new Error(msg);
+      }
+      renderResults(data);
+    } catch (err) {
+      errorBox.textContent  = `Error: ${err.message}`;
+      errorBox.style.display = 'block';
+    } finally {
+      loadingEl.style.display = 'none';
+      submitBtn.disabled      = false;
+    }
+  });
+
+  function renderResults(d) {
+    // Off-topic: show notice card, hide the rest
+    const isOffTopic = d.cypher.startsWith('-- Not applicable');
+    if (isOffTopic) {
+      // Remove any previous off-topic card
+      document.getElementById('off-topic-card')?.remove();
+      const card = document.createElement('div');
+      card.id = 'off-topic-card';
+      card.className = 'off-topic-card';
+      card.innerHTML = `
+        <div class="card-title">Out of Scope</div>
+        <p>${d.insight}</p>
+      `;
+      resultsEl.prepend(card);
+      // Hide data sections, show only the notice
+      document.getElementById('answer-card').style.display   = 'none';
+      document.getElementById('results').style.display       = 'block';
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Restore answer card in case a previous query was off-topic
+    document.getElementById('answer-card').style.display = '';
+    document.getElementById('off-topic-card')?.remove();
+
+    // Answer
+    document.getElementById('answer-text').textContent       = d.insight;
+    document.getElementById('meta-request-id').textContent   = d.request_id;
+    document.getElementById('meta-retries').textContent      = d.retries;
+
+    // Cypher
+    document.getElementById('cypher-code').textContent = d.cypher;
+
+    // Row count badge
+    document.getElementById('row-count-badge').textContent =
+      `(${d.row_count} row${d.row_count !== 1 ? 's' : ''})`;
+
+    // Raw rows table
+    const container = document.getElementById('rows-container');
+    container.innerHTML = '';
+    if (d.raw_rows && d.raw_rows.length > 0) {
+      const cols = Object.keys(d.raw_rows[0]);
+      const wrap  = document.createElement('div');
+      wrap.className = 'table-wrap';
+
+      const tbl   = document.createElement('table');
+      const thead = document.createElement('thead');
+      const hrow  = document.createElement('tr');
+      cols.forEach(c => {
+        const th = document.createElement('th');
+        th.textContent = c;
+        hrow.appendChild(th);
+      });
+      thead.appendChild(hrow);
+      tbl.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      d.raw_rows.forEach(row => {
+        const tr = document.createElement('tr');
+        cols.forEach(c => {
+          const td  = document.createElement('td');
+          const val = row[c];
+          td.textContent = val === null || val === undefined ? '—' : String(val);
+          td.title = td.textContent;   // full value on hover if truncated
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      tbl.appendChild(tbody);
+      wrap.appendChild(tbl);
+      container.appendChild(wrap);
+    } else {
+      const p = document.createElement('p');
+      p.className = 'no-rows';
+      p.textContent = 'No rows returned — see answer for white-space interpretation.';
+      container.appendChild(p);
+    }
+
+    // Scores
+    const s    = d.scores;
+    const grid = document.getElementById('scores-grid');
+    grid.innerHTML = '';
+
+    const tiles = [
+      {
+        label: 'Latency',
+        value: `${d.latency_seconds}s`,
+        sub: null, highlight: false,
+        tip: 'Wall-clock time: validation → Cypher gen → Neo4j → synthesis',
+      },
+      {
+        label: 'Row Count',
+        value: d.row_count,
+        sub: null, highlight: false,
+        tip: 'Rows returned by the generated Cypher query (max 100)',
+      },
+      {
+        label: 'Relevance',
+        value: s.relevance.toFixed(2),
+        sub: s.relevance_label, highlight: false,
+        tip: 'GPT-4o-mini judge: "Does the answer address the question?"\nYES → 1.0 | PARTIAL → 0.5 | NO → 0.0',
+      },
+      {
+        label: 'Creativity',
+        value: s.creativity.toFixed(2),
+        sub: s.creativity_label, highlight: false,
+        tip: 'GPT-4o-mini judge: "Does the answer surface non-obvious insights?"\nHIGH → 1.0 | MEDIUM → 0.5 | LOW → 0.0',
+      },
+      {
+        label: 'Latency Score',
+        value: s.latency_score.toFixed(3),
+        sub: null, highlight: false,
+        tip: `Formula: max(0, 1 − latency / 10)\n${d.latency_seconds}s → 1 − ${d.latency_seconds}/10 = ${s.latency_score.toFixed(3)}`,
+      },
+      {
+        label: 'Composite',
+        value: s.composite.toFixed(3),
+        sub: null, highlight: true,
+        tip: `(Relevance + Creativity + Latency Score) / 3\n= (${s.relevance.toFixed(2)} + ${s.creativity.toFixed(2)} + ${s.latency_score.toFixed(3)}) / 3\n= ${s.composite.toFixed(3)}`,
+      },
+    ];
+
+    tiles.forEach(t => {
+      const tile = document.createElement('div');
+      tile.className = 'score-tile' + (t.highlight ? ' highlight' : '');
+      tile.title = t.tip;
+      tile.innerHTML = `
+        <span class="score-label">${t.label}</span>
+        <span class="score-value">${t.value}</span>
+        ${t.sub ? `<span class="score-sub ${badgeClass(t.sub)}">${t.sub}</span>` : ''}
+      `;
+      grid.appendChild(tile);
+    });
+
+    resultsEl.style.display = 'block';
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function badgeClass(label) {
+    if (label === 'YES' || label === 'HIGH')         return 'badge-green';
+    if (label === 'PARTIAL' || label === 'MEDIUM')   return 'badge-yellow';
+    return 'badge-red';
+  }
+</script>
+
+</body>
+</html>
