@@ -58,30 +58,20 @@ GMI.name is a specific dish (e.g., "ramen", "burger"). To query all items in a c
 CYPHER_EXAMPLES = """
 ## Example Cypher Queries
 
--- DISH-NAME SEARCH (most common pattern): filter on MenuItem name, never on g.category:
--- User asks: "what ingredients are popular for biryani?"
+-- Ingredient lookup by GMI dish name (ramen IS a GMI.name in the schema):
+// Interpretation: finding ingredients for ramen using GMI node
+MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+WHERE toLower(g.name) CONTAINS 'ramen'
+RETURN i.name AS ingredient, count(DISTINCT m) AS freq
+ORDER BY freq DESC LIMIT 10
+
+-- Ingredient lookup by dish name in menu item names (biryani may not be a GMI.name — search m.name):
 // Interpretation: finding ingredients for biryani by matching menu item names
 MATCH (m:MenuItem)-[:CONTAINS]->(i:Ingredient)
 WHERE toLower(m.name) CONTAINS 'biryani'
 WITH i.name AS ingredient, count(DISTINCT m) AS menu_count
 RETURN ingredient, menu_count
 ORDER BY menu_count DESC LIMIT 10
-
--- Same pattern for any named dish — pad thai, sushi, tacos, etc:
--- User asks: "what ingredients are popular for pad thai?"
-// Interpretation: finding ingredients for pad thai by matching menu item names
-MATCH (m:MenuItem)-[:CONTAINS]->(i:Ingredient)
-WHERE toLower(m.name) CONTAINS 'pad thai'
-WITH i.name AS ingredient, count(DISTINCT m) AS menu_count
-RETURN ingredient, menu_count
-ORDER BY menu_count DESC LIMIT 10
-
--- Ingredient lookup by GMI dish name (only when querying a known GMI node by name):
-// Interpretation: finding ingredients for ramen using GMI node
-MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
-WHERE toLower(g.name) CONTAINS 'ramen'
-RETURN i.name AS ingredient, count(DISTINCT m) AS freq
-ORDER BY freq DESC LIMIT 10
 
 -- PAIRS_WITH, open endpoints (alphabetic filter prevents bidirectional duplicates):
 MATCH (c:Cuisine {name: 'Japanese'})<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)
