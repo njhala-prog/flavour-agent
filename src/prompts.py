@@ -58,10 +58,20 @@ GMI.name is a specific dish (e.g., "ramen", "burger"). To query all items in a c
 CYPHER_EXAMPLES = """
 ## Example Cypher Queries
 
--- Ingredient lookup by dish (GMI.name = specific dish):
-MATCH (g:GMI {name: 'ramen'})<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+-- Ingredient lookup by GMI dish name (ramen IS a GMI.name in the schema):
+// Interpretation: finding ingredients for ramen using GMI node
+MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+WHERE toLower(g.name) CONTAINS 'ramen'
 RETURN i.name AS ingredient, count(DISTINCT m) AS freq
 ORDER BY freq DESC LIMIT 10
+
+-- Ingredient lookup by dish name in menu item names (biryani may not be a GMI.name — search m.name):
+// Interpretation: finding ingredients for biryani by matching menu item names
+MATCH (m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+WHERE toLower(m.name) CONTAINS 'biryani'
+WITH i.name AS ingredient, count(DISTINCT m) AS menu_count
+RETURN ingredient, menu_count
+ORDER BY menu_count DESC LIMIT 10
 
 -- PAIRS_WITH, open endpoints (alphabetic filter prevents bidirectional duplicates):
 MATCH (c:Cuisine {name: 'Japanese'})<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)
@@ -214,6 +224,13 @@ Your job is to translate natural language questions about flavor trends and ingr
     Example: WHERE toLower(c.name) CONTAINS toLower('japanese')
     instead of {{name: 'Japanese'}}. This handles typos, partial names, and
     unknown aliases (e.g. 'Szechuan' → matches 'Chinese').
+
+18. Dish-name ingredient queries: when the user asks "what ingredients are in X dish"
+    or "what is popular for X dish", ALWAYS filter by toLower(m.name) CONTAINS 'x'
+    on the MenuItem node — NOT by g.category. The g.category field has only 6 broad
+    values (Entree, Appetizer, etc.) and is NEVER a dish name. Only use GMI when
+    the dish is a known GMI.name (ramen, burger, pizza, etc.) — and even then prefer
+    toLower(g.name) CONTAINS over exact equality.
 
 16. Broad questions (no scoping filter): when the question has no cuisine,
     neighborhood, ingredient category, or dish filter, always group results by
