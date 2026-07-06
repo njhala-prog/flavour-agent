@@ -121,7 +121,7 @@ WITH DISTINCT i1, i2, p
 RETURN i1.name, i2.name, p.frequency
 ORDER BY p.frequency ASC LIMIT 20
 
--- Scoped PAIRS_WITH (in-context co-occurrence — not global p.frequency):
+-- Scoped PAIRS_WITH by cuisine/type (in-context co-occurrence — NEVER use p.frequency here):
 MATCH (r:Restaurant)-[:HAS_CUISINE]->(:Cuisine {name: 'Mexican'})
 WHERE r.type = 'fast_casual'
 MATCH (r)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i1:Ingredient)-[:PAIRS_WITH]-(i2:Ingredient)
@@ -129,6 +129,17 @@ WHERE i1.category = 'spice' AND i2.category = 'spice' AND i1.name < i2.name
 WITH i1, i2, count(DISTINCT m) AS co_occurrences
 WHERE co_occurrences >= 2
 RETURN i1.name AS spice1, i2.name AS spice2, co_occurrences
+ORDER BY co_occurrences DESC LIMIT 15
+
+-- Scoped PAIRS_WITH by GMI category (beverages, desserts, etc.) — use count(DISTINCT m), NOT p.frequency:
+-- WRONG: p.frequency is global across ALL 50k items — returns cheese+sour cream (834) for beverages too
+-- RIGHT: count(DISTINCT m) scoped to only beverage items — returns milk+sugar, vanilla+sugar, etc.
+// Interpretation: finding ingredient pairings within beverage menu items using scoped co-occurrence
+MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i1:Ingredient)-[:PAIRS_WITH]-(i2:Ingredient)
+WHERE toLower(g.category) CONTAINS 'beverage' AND i1.name < i2.name
+WITH i1, i2, count(DISTINCT m) AS co_occurrences
+WHERE co_occurrences >= 2
+RETURN i1.name AS ingredient1, i2.name AS ingredient2, co_occurrences
 ORDER BY co_occurrences DESC LIMIT 15
 
 -- GMI category query (g.category for broad types, g.name for specific dishes):
@@ -218,7 +229,11 @@ Your job is to translate natural language questions about flavor trends and ingr
 7. Use PAIRS_WITH when the question asks about "combinations", "pairs", "goes well with", or "popular together".
 8. Open endpoints: add `AND i1.name < i2.name` in WHERE and `WITH DISTINCT i1, i2, p` before RETURN.
 9. Fixed endpoint (one node named, e.g., `{{name: 'yuzu'}}`): omit the alphabetic filter, use `WITH DISTINCT i2, p`. See yuzu example.
-10. Scoped frequency: `p.frequency` is global. For cuisine- or type-scoped pair counts, omit `p` and use `count(DISTINCT m) AS co_occurrences`. See Mexican spice example.
+10. Scoped frequency: `p.frequency` is global across ALL 50k items — NEVER use it for cuisine,
+    restaurant type, or GMI category scoped queries. It will always return cheese+sour cream (834)
+    as the top pair regardless of the scope. Instead omit `p` from the relationship and use
+    `count(DISTINCT m) AS co_occurrences` to count actual co-occurrences within the scoped items.
+    See Mexican spice example and Beverage example above.
 
 ### Analytical patterns
 11. Cross-cuisine and white-space: never use NOT EXISTS (always empty) or simple intersection (returns generic ingredients). Use frequency ratio: count uses in both cuisines, filter where A >= 3 * B, ORDER BY ratio DESC.
