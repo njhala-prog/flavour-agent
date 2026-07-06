@@ -58,20 +58,30 @@ GMI.name is a specific dish (e.g., "ramen", "burger"). To query all items in a c
 CYPHER_EXAMPLES = """
 ## Example Cypher Queries
 
--- Ingredient lookup by GMI dish name (ramen IS a GMI.name in the schema):
-// Interpretation: finding ingredients for ramen using GMI node
-MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
-WHERE toLower(g.name) CONTAINS 'ramen'
-RETURN i.name AS ingredient, count(DISTINCT m) AS freq
-ORDER BY freq DESC LIMIT 10
-
--- Ingredient lookup by dish name in menu item names (biryani may not be a GMI.name — search m.name):
+-- DISH-NAME SEARCH (most common pattern): filter on MenuItem name, never on g.category:
+-- User asks: "what ingredients are popular for biryani?"
 // Interpretation: finding ingredients for biryani by matching menu item names
 MATCH (m:MenuItem)-[:CONTAINS]->(i:Ingredient)
 WHERE toLower(m.name) CONTAINS 'biryani'
 WITH i.name AS ingredient, count(DISTINCT m) AS menu_count
 RETURN ingredient, menu_count
 ORDER BY menu_count DESC LIMIT 10
+
+-- Same pattern for any named dish — pad thai, sushi, tacos, etc:
+-- User asks: "what ingredients are popular for pad thai?"
+// Interpretation: finding ingredients for pad thai by matching menu item names
+MATCH (m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+WHERE toLower(m.name) CONTAINS 'pad thai'
+WITH i.name AS ingredient, count(DISTINCT m) AS menu_count
+RETURN ingredient, menu_count
+ORDER BY menu_count DESC LIMIT 10
+
+-- Ingredient lookup by GMI dish name (only when querying a known GMI node by name):
+// Interpretation: finding ingredients for ramen using GMI node
+MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+WHERE toLower(g.name) CONTAINS 'ramen'
+RETURN i.name AS ingredient, count(DISTINCT m) AS freq
+ORDER BY freq DESC LIMIT 10
 
 -- PAIRS_WITH, open endpoints (alphabetic filter prevents bidirectional duplicates):
 MATCH (c:Cuisine {name: 'Japanese'})<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)
@@ -225,12 +235,16 @@ Your job is to translate natural language questions about flavor trends and ingr
     instead of {{name: 'Japanese'}}. This handles typos, partial names, and
     unknown aliases (e.g. 'Szechuan' → matches 'Chinese').
 
-18. Dish-name ingredient queries: when the user asks "what ingredients are in X dish"
-    or "what is popular for X dish", ALWAYS filter by toLower(m.name) CONTAINS 'x'
-    on the MenuItem node — NOT by g.category. The g.category field has only 6 broad
-    values (Entree, Appetizer, etc.) and is NEVER a dish name. Only use GMI when
-    the dish is a known GMI.name (ramen, burger, pizza, etc.) — and even then prefer
-    toLower(g.name) CONTAINS over exact equality.
+18. Dish-name ingredient queries: when the user asks about ingredients in a specific
+    named dish (biryani, pad thai, tacos, sushi, etc.), filter on the MenuItem name:
+      RIGHT: WHERE toLower(m.name) CONTAINS 'biryani'
+      WRONG: WHERE g.category = 'Entree'   ← NEVER do this — 'Entree' covers ALL 50k
+             entrees and has nothing to do with biryani specifically.
+    g.category has only 6 values (Entree/Appetizer/Side/Dessert/Beverage/Soup).
+    It is NEVER a dish name and MUST NOT be used to scope a specific dish query.
+    Only reach for GMI when the question mentions a known GMI.name (ramen, burger,
+    pizza, taco) AND you want to filter at the GMI level — even then use
+    toLower(g.name) CONTAINS, never g.category.
 
 16. Broad questions (no scoping filter): when the question has no cuisine,
     neighborhood, ingredient category, or dish filter, always group results by
