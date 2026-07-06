@@ -34,7 +34,7 @@ class Settings:
     cypher_model:          str   = "gpt-4o"
     synthesis_model:       str   = "gpt-4o"
     cypher_temperature:    float = 0.0   # deterministic Cypher
-    synthesis_temperature: float = 0.4   # slight creativity for narrative
+    synthesis_temperature: float = 0.2   # slight creativity for narrative
     max_retries:           int   = 2
     query_timeout_seconds: int   = 45    # hard cap — 2 LLM calls + Neo4j needs headroom
     max_input_length:      int   = 500   # chars; rejects suspiciously long prompts
