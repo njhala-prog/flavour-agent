@@ -131,15 +131,17 @@ WHERE co_occurrences >= 2
 RETURN i1.name AS spice1, i2.name AS spice2, co_occurrences
 ORDER BY co_occurrences DESC LIMIT 15
 
--- Scoped PAIRS_WITH by GMI category (beverages, desserts, etc.) — use count(DISTINCT m), NOT p.frequency:
--- WRONG: p.frequency is global across ALL 50k items — returns cheese+sour cream (834) for beverages too
--- RIGHT: count(DISTINCT m) scoped to only beverage items — returns milk+sugar, vanilla+sugar, etc.
-// Interpretation: finding ingredient pairings within beverage menu items using scoped co-occurrence
-MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i1:Ingredient)-[:PAIRS_WITH]-(i2:Ingredient)
+-- Scoped co-occurrence by GMI category (beverages, desserts, etc.):
+-- NEVER use PAIRS_WITH for this — p.frequency is global, and count(DISTINCT m) via PAIRS_WITH
+-- still counts items containing only i1, not items containing BOTH i1 AND i2.
+-- RIGHT approach: match two CONTAINS edges from the same MenuItem directly.
+// Interpretation: finding ingredient pairs that co-occur in beverage menu items
+MATCH (g:GMI)<-[:IS_TYPE]-(m:MenuItem)-[:CONTAINS]->(i1:Ingredient)
+MATCH (m)-[:CONTAINS]->(i2:Ingredient)
 WHERE toLower(g.category) CONTAINS 'beverage' AND i1.name < i2.name
-WITH i1, i2, count(DISTINCT m) AS co_occurrences
+WITH i1.name AS ingredient1, i2.name AS ingredient2, count(DISTINCT m) AS co_occurrences
 WHERE co_occurrences >= 2
-RETURN i1.name AS ingredient1, i2.name AS ingredient2, co_occurrences
+RETURN ingredient1, ingredient2, co_occurrences
 ORDER BY co_occurrences DESC LIMIT 15
 
 -- GMI category query (g.category for broad types, g.name for specific dishes):
@@ -231,9 +233,12 @@ Your job is to translate natural language questions about flavor trends and ingr
 9. Fixed endpoint (one node named, e.g., `{{name: 'yuzu'}}`): omit the alphabetic filter, use `WITH DISTINCT i2, p`. See yuzu example.
 10. Scoped frequency: `p.frequency` is global across ALL 50k items — NEVER use it for cuisine,
     restaurant type, or GMI category scoped queries. It will always return cheese+sour cream (834)
-    as the top pair regardless of the scope. Instead omit `p` from the relationship and use
-    `count(DISTINCT m) AS co_occurrences` to count actual co-occurrences within the scoped items.
-    See Mexican spice example and Beverage example above.
+    as the top pair regardless of the scope. For GMI-category or neighborhood scoped co-occurrence,
+    do NOT use PAIRS_WITH at all — instead match two separate CONTAINS edges from the same MenuItem:
+    `MATCH (m)-[:CONTAINS]->(i1:Ingredient) MATCH (m)-[:CONTAINS]->(i2:Ingredient)`
+    then `count(DISTINCT m) AS co_occurrences`. This guarantees both ingredients are in the SAME item.
+    PAIRS_WITH + count(DISTINCT m) still only counts items containing i1, not both i1 and i2.
+    See Beverage example above. Mexican spice example may still use PAIRS_WITH if scoped by cuisine.
 
 ### Analytical patterns
 11. Cross-cuisine and white-space: never use NOT EXISTS (always empty) or simple intersection (returns generic ingredients). Use frequency ratio: count uses in both cuisines, filter where A >= 3 * B, ORDER BY ratio DESC.
