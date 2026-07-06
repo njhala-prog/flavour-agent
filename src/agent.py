@@ -461,6 +461,8 @@ class FlavorInnovationAgent:
                     "role": "user",
                     "content": (
                         f"Question: {question}\n\n"
+                        f"IMPORTANT: Your very first sentence must directly answer the question above. "
+                        f"Do not open with background or context — state the answer immediately.\n\n"
                         f"Query results ({row_count} rows{truncation}):\n{results_text}"
                     ),
                 },

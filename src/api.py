@@ -165,9 +165,12 @@ def _llm_judge(llm: OpenAI, system_prompt: str, user_content: str) -> str:
 def _score_relevance(llm: OpenAI, question: str, output: str) -> tuple[float, str]:
     verdict = _llm_judge(
         llm,
-        "Score whether the answer directly addresses the question.\n"
+        "You are evaluating an AI food analytics agent that queries a 50,000-item NYC restaurant database.\n"
+        "Score whether the answer directly addresses the question asked.\n"
         "Reply with exactly one word: YES, PARTIAL, or NO.\n"
-        "YES = on-topic and complete. PARTIAL = related but incomplete. NO = off-topic.",
+        "YES = first sentence directly answers the question and the data supports it.\n"
+        "PARTIAL = addresses the topic but misses the specific angle, or answers a related but different question.\n"
+        "NO = completely off-topic, refuses to answer, or contradicts the question.",
         f"Question: {question}\nAnswer: {output}",
     )
     label = "YES" if "YES" in verdict else "PARTIAL" if "PARTIAL" in verdict else "NO"
