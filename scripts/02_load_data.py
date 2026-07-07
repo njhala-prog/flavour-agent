@@ -121,7 +121,7 @@ def load_gmis(driver):
 
 
 def load_menu_items(driver):
-    df = pd.read_csv(DATA_DIR / "menu_items_retagged.csv", encoding="utf-8", errors="replace").fillna("")
+    df = pd.read_csv(DATA_DIR / "menu_items_retagged.csv", encoding="utf-8", encoding_errors="replace").fillna("")
     rows = df.to_dict("records")
 
     def price_tier(price):

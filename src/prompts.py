@@ -40,19 +40,26 @@ FlavorProfile.name values: "spicy" | "sweet" | "savory" | "umami" | "sour" | "sm
 
 ### Valid enum values (only these exist in the database)
 
-Restaurant.type: "fast_casual" | "casual_dining" | "fine_dining" | "qsr"
-Cuisine.name: "American" | "Chinese" | "Coffee/Dessert" | "Indian" | "Italian" | "Japanese" | "Korean" | "Mediterranean" | "Mexican" | "Thai"
+Restaurant.type: "fast_casual" | "casual_dining" | "fine_dining" | "qsr" | "independent" | "mid_scale" | "other"
+Cuisine.name: ALL LOWERCASE — e.g. "american", "italian", "japanese", "chinese", "korean", "mexican",
+  "thai", "indian", "mediterranean", "french", "greek", "spanish", "vietnamese", "caribbean",
+  "pizza", "sushi bars", "ramen", "szechuan", "peruvian", "brazilian" and 70+ more.
+  ALWAYS use toLower(c.name) CONTAINS for cuisine matching — never exact equality or capitalized names.
 GMI.category: "Entree" | "Appetizer" | "Side" | "Dessert" | "Beverage" | "Soup"
-Ingredient.category: "protein" | "vegetable" | "dairy" | "grain" | "sauce" | "spice" | "fruit" | "sweetener" | "oil" | "nut"
-Neighborhood.name: "Astoria" | "Bronx" | "Brooklyn" | "Bushwick" | "Chelsea" | "DUMBO" | "East Village" | "Financial District" | "Harlem" | "Long Island City" | "Manhattan" | "Midtown" | "Park Slope" | "Queens" | "SoHo" | "Staten Island" | "Tribeca" | "Upper East Side" | "Upper West Side" | "West Village" | "Williamsburg"
+Ingredient.category: "dairy" | "fruit" | "fats/oils" | "meat" | "nuts/seeds/grains" | "seafood" |
+  "spice" | "herbs/spices" | "sweetener" | "vegetable" | "fortifier" | "other"
+  For spice/herb queries use: i.category IN ['spice', 'herbs/spices']
+Neighborhood.name: NYC neighborhoods (Brooklyn, Manhattan, Queens, Bronx, Staten Island, Harlem,
+  Astoria, Long Island City, Flushing, Crown Heights, Williamsburg, etc.) plus other NY State
+  cities (Buffalo, Syracuse, etc.). ALWAYS use toLower(n.name) CONTAINS for neighborhood matching.
 PriceTier.name: "budget" | "mid" | "premium"
 
 GMI.name is a specific dish (e.g., "ramen", "burger"). To query all items in a category, write
 `WHERE g.category = 'Dessert'` — not `{name: 'Dessert'}` (which matches nothing).
 
 ### Key Stats
-- 500 restaurants | ~50,000 menu items | 159 ingredients | 55 GMI types
-- 151,163 item-ingredient mappings | PAIRS_WITH: 12,373 edges, frequency range 5–834
+- 1,061 restaurants | ~44,630 menu items | 1,729 ingredients | 55 GMI types
+- 221,625 item-ingredient mappings | PAIRS_WITH: co-occurrence edges, min frequency 5
 """
 
 CYPHER_EXAMPLES = """
@@ -84,7 +91,9 @@ RETURN i.name AS ingredient, count(DISTINCT m) AS freq
 ORDER BY freq DESC LIMIT 10
 
 -- PAIRS_WITH, open endpoints (alphabetic filter prevents bidirectional duplicates):
-MATCH (c:Cuisine {name: 'Japanese'})<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)
+-- Cuisine names are lowercase — ALWAYS use toLower() CONTAINS, never exact equality
+MATCH (c:Cuisine)<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)
+WHERE toLower(c.name) CONTAINS 'japanese'
 MATCH (m)-[:CONTAINS]->(i1:Ingredient)-[p:PAIRS_WITH]-(i2:Ingredient)
 WHERE i1.name < i2.name
 WITH DISTINCT i1, i2, p
@@ -92,21 +101,26 @@ RETURN i1.name, i2.name, p.frequency
 ORDER BY p.frequency DESC LIMIT 15
 
 -- Cross-cuisine crossover (ratio approach — ORDER BY ratio, not count):
+-- Cuisine names are LOWERCASE — use toLower() CONTAINS or lowercase IN list
 MATCH (i:Ingredient)<-[:CONTAINS]-(m_asian:MenuItem)<-[:SERVES]-(r_asian:Restaurant)-[:HAS_CUISINE]->(c_asian:Cuisine)
-WHERE c_asian.name IN ['Japanese','Chinese','Korean','Thai','Indian']
+WHERE toLower(c_asian.name) IN ['japanese','chinese','korean','thai','indian']
 WITH i, count(DISTINCT m_asian) AS asian_uses
-WHERE asian_uses >= 20
-MATCH (i)<-[:CONTAINS]-(m_us:MenuItem)<-[:SERVES]-(r_us:Restaurant)-[:HAS_CUISINE]->(:Cuisine {name: 'American'})
+WHERE asian_uses >= 10
+MATCH (i)<-[:CONTAINS]-(m_us:MenuItem)<-[:SERVES]-(r_us:Restaurant)-[:HAS_CUISINE]->(c_us:Cuisine)
+WHERE toLower(c_us.name) CONTAINS 'american'
 WITH i, asian_uses, count(DISTINCT m_us) AS american_uses
-WHERE asian_uses >= 3 * american_uses AND american_uses >= 5
+WHERE asian_uses >= 3 * american_uses AND american_uses >= 3
 RETURN i.name AS ingredient, asian_uses, american_uses,
        round(toFloat(asian_uses) / american_uses, 1) AS ratio
 ORDER BY ratio DESC LIMIT 15
 
 -- White-space: ingredients 3x more common in cuisine A than cuisine B:
-MATCH (i:Ingredient)<-[:CONTAINS]-(m1:MenuItem)<-[:SERVES]-(:Restaurant)-[:HAS_CUISINE]->(:Cuisine {name: 'Japanese'})
+-- Always toLower() CONTAINS for cuisine names — they are stored lowercase
+MATCH (i:Ingredient)<-[:CONTAINS]-(m1:MenuItem)<-[:SERVES]-(:Restaurant)-[:HAS_CUISINE]->(c1:Cuisine)
+WHERE toLower(c1.name) CONTAINS 'japanese'
 WITH i, count(DISTINCT m1) AS jap_count
-MATCH (i)<-[:CONTAINS]-(m2:MenuItem)<-[:SERVES]-(:Restaurant)-[:HAS_CUISINE]->(:Cuisine {name: 'Korean'})
+MATCH (i)<-[:CONTAINS]-(m2:MenuItem)<-[:SERVES]-(:Restaurant)-[:HAS_CUISINE]->(c2:Cuisine)
+WHERE toLower(c2.name) CONTAINS 'korean'
 WITH i, jap_count, count(DISTINCT m2) AS kor_count
 WHERE jap_count >= 3 * kor_count
 RETURN i.name, i.category, jap_count, kor_count
@@ -121,14 +135,17 @@ WITH DISTINCT i1, i2, p
 RETURN i1.name, i2.name, p.frequency
 ORDER BY p.frequency ASC LIMIT 20
 
--- Scoped PAIRS_WITH by cuisine/type (in-context co-occurrence — NEVER use p.frequency here):
-MATCH (r:Restaurant)-[:HAS_CUISINE]->(:Cuisine {name: 'Mexican'})
-WHERE r.type = 'fast_casual'
-MATCH (r)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i1:Ingredient)-[:PAIRS_WITH]-(i2:Ingredient)
-WHERE i1.category = 'spice' AND i2.category = 'spice' AND i1.name < i2.name
-WITH i1, i2, count(DISTINCT m) AS co_occurrences
+-- Scoped co-occurrence by cuisine/type — use double CONTAINS edges, NOT PAIRS_WITH:
+-- Cuisine stored lowercase; spice/herb category split into 'spice' and 'herbs/spices'
+MATCH (r:Restaurant)-[:HAS_CUISINE]->(c:Cuisine)
+WHERE toLower(c.name) CONTAINS 'mexican' AND r.type = 'fast_casual'
+MATCH (r)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i1:Ingredient)
+MATCH (m)-[:CONTAINS]->(i2:Ingredient)
+WHERE i1.category IN ['spice', 'herbs/spices'] AND i2.category IN ['spice', 'herbs/spices']
+  AND i1.name < i2.name
+WITH i1.name AS spice1, i2.name AS spice2, count(DISTINCT m) AS co_occurrences
 WHERE co_occurrences >= 2
-RETURN i1.name AS spice1, i2.name AS spice2, co_occurrences
+RETURN spice1, spice2, co_occurrences
 ORDER BY co_occurrences DESC LIMIT 15
 
 -- Scoped co-occurrence by GMI category (beverages, desserts, etc.):
@@ -156,34 +173,38 @@ WITH DISTINCT i2, p
 RETURN i2.name AS pairing, i2.category, p.frequency AS co_occurrences
 ORDER BY p.frequency DESC LIMIT 20
 
--- Edge case: when a type doesn't exist in the schema, search by restaurant name:
-MATCH (r:Restaurant)
-WHERE toLower(r.name) CONTAINS 'steak' OR toLower(r.name) CONTAINS 'grill'
+-- Edge case: when a type doesn't exist in schema, search by restaurant name or cuisine:
+-- Also: 'vegan' IS a valid cuisine.name in this dataset — try cuisine match first
+MATCH (r:Restaurant)-[:HAS_CUISINE]->(c:Cuisine)
+WHERE toLower(c.name) IN ['vegan', 'vegetarian']
+   OR toLower(r.name) CONTAINS 'steak' OR toLower(r.name) CONTAINS 'grill'
 MATCH (r)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i:Ingredient)-[:IN_CATEGORY]->(ic:IngredientCategory)
-WHERE ic.name IN ['vegetable', 'grain', 'fruit', 'oil', 'nut']
+WHERE ic.name IN ['vegetable', 'fruit', 'fats/oils', 'nuts/seeds/grains', 'herbs/spices']
 WITH r, m, count(DISTINCT i) AS plant_ingredients
-WHERE plant_ingredients >= 3
+WHERE plant_ingredients >= 2
 RETURN m.name AS item, r.name AS restaurant, plant_ingredients
 ORDER BY plant_ingredients DESC LIMIT 20
 
 -- Distinctiveness ratio (ingredients characteristic of a specific cuisine):
-MATCH (c:Cuisine {name: 'Indian'})<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
-WHERE i.category = 'spice'
+-- Cuisine stored lowercase; use IN ['spice','herbs/spices'] for spice/herb queries
+MATCH (c:Cuisine)<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
+WHERE toLower(c.name) CONTAINS 'indian' AND i.category IN ['spice', 'herbs/spices']
 WITH i, count(DISTINCT m) AS cuisine_uses
 MATCH (i)<-[:CONTAINS]-(m_all:MenuItem)
 WITH i, cuisine_uses, count(DISTINCT m_all) AS total_uses
-WHERE cuisine_uses >= 5
+WHERE cuisine_uses >= 3
 RETURN i.name AS spice, cuisine_uses, total_uses,
        round(toFloat(cuisine_uses) / total_uses * 100, 1) AS pct_in_cuisine
 ORDER BY pct_in_cuisine DESC LIMIT 20
 
 -- EDGE CASE: fuzzy / typo-resilient name matching (use CONTAINS not exact equality):
-// Interpretation: user typed 'szechuan' — not a valid Cuisine.name; matching 'Chinese' via CONTAINS
+// Interpretation: user typed 'szechuan' — matching both 'szechuan' and 'chinese' cuisine via CONTAINS
+// Note: 'szechuan' IS a valid cuisine in this dataset (stored lowercase); both match via CONTAINS
 MATCH (c:Cuisine)
-WHERE toLower(c.name) CONTAINS toLower('szechuan')
-   OR toLower(c.name) CONTAINS toLower('chinese')
+WHERE toLower(c.name) CONTAINS 'szechuan'
+   OR toLower(c.name) CONTAINS 'chinese'
 MATCH (c)<-[:HAS_CUISINE]-(r:Restaurant)-[:SERVES]->(m:MenuItem)-[:CONTAINS]->(i:Ingredient)
-WHERE i.category = 'spice'
+WHERE i.category IN ['spice', 'herbs/spices']
 RETURN i.name AS spice, count(DISTINCT m) AS menu_count
 ORDER BY menu_count DESC LIMIT 15
 
@@ -251,9 +272,14 @@ Your job is to translate natural language questions about flavor trends and ingr
 ### Edge Case Handling
 15. Fuzzy matching: for any string value the user supplies (cuisine name, ingredient,
     neighborhood, dish), use toLower() CONTAINS instead of exact equality.
-    Example: WHERE toLower(c.name) CONTAINS toLower('japanese')
-    instead of {{name: 'Japanese'}}. This handles typos, partial names, and
-    unknown aliases (e.g. 'Szechuan' → matches 'Chinese').
+    CRITICAL: Cuisine.name values are stored LOWERCASE in this database ('japanese', not 'Japanese').
+    NEVER use {{name: 'Japanese'}} — it will return 0 results.
+    Always write: WHERE toLower(c.name) CONTAINS 'japanese'
+    This also handles typos and aliases (e.g. 'Szechuan' → CONTAINS 'szechuan' works directly).
+
+15b. Spice/herb queries: Ingredient.category splits spices into TWO values — 'spice' and 'herbs/spices'.
+    To query all spices and herbs, always use: i.category IN ['spice', 'herbs/spices']
+    NEVER use i.category = 'spice' alone — it misses most herbs.
 
 16. Broad questions (no scoping filter): when the question has no cuisine,
     neighborhood, ingredient category, or dish filter, always group results by
@@ -278,7 +304,7 @@ Your job is to translate natural language questions about flavor trends and ingr
 """
 
 INSIGHT_SYNTHESIS_SYSTEM = """You are a food industry analyst specializing in flavor trends and culinary innovation.
-You have just run a database query against a dataset of 50,000 NYC restaurant menu items.
+You have just run a database query against a dataset of 44,000+ New York restaurant menu items.
 
 Your job is to synthesize the raw query results into a concise, insightful response.
 
