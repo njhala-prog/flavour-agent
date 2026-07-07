@@ -84,7 +84,7 @@ def load_restaurants(driver):
 
 
 def load_ingredients(driver):
-    df = pd.read_csv(DATA_DIR / "ingredients.csv").fillna("")
+    df = pd.read_csv(DATA_DIR / "ingredients_retagged.csv").fillna("")
     rows = df.to_dict("records")
     run_batched(
         driver,
@@ -121,7 +121,7 @@ def load_gmis(driver):
 
 
 def load_menu_items(driver):
-    df = pd.read_csv(DATA_DIR / "menu_items.csv").fillna("")
+    df = pd.read_csv(DATA_DIR / "menu_items_retagged.csv", encoding="utf-8", errors="replace").fillna("")
     rows = df.to_dict("records")
 
     def price_tier(price):
@@ -221,13 +221,40 @@ FLAVOR_PROFILE_MAP = {
 }
 
 
+CATEGORY_FLAVOR_MAP = {
+    "sweetener":               "sweet",
+    "fruit":                   "sweet",
+    "dairy":                   "savory",
+    "herbs/spices":            "herbal",
+    "spice":                   "spicy",
+    "meat":                    "savory",
+    "seafood":                 "umami",
+    "fats/oils":               "savory",
+    "nuts/seeds/grains":       "savory",
+    "grains":                  "savory",
+    "vegetable":               "savory",
+}
+
+
 def load_flavor_profiles(driver):
-    rows = [
+    # Phase A — name-based matching (expanded list)
+    name_rows = [
         {"profile": profile, "ingredient": name}
         for profile, names in FLAVOR_PROFILE_MAP.items()
         for name in names
     ]
+    # Phase B — category-based fallback for retagged ingredients
+    cat_rows = [
+        {"profile": fp, "category": cat}
+        for cat, fp in CATEGORY_FLAVOR_MAP.items()
+    ]
     with driver.session() as session:
+        # Create FlavorProfile nodes
+        session.run(
+            "UNWIND $profiles AS p MERGE (:FlavorProfile {name: p})",
+            profiles=list(FLAVOR_PROFILE_MAP.keys()),
+        )
+        # Name-based links
         session.run(
             """
             UNWIND $rows AS row
@@ -238,7 +265,18 @@ def load_flavor_profiles(driver):
                 MERGE (i)-[:HAS_FLAVOR]->(fp)
             )
             """,
-            rows=rows,
+            rows=name_rows,
+        )
+        # Category-based links (only for ingredients not yet tagged)
+        session.run(
+            """
+            UNWIND $rows AS row
+            MATCH (i:Ingredient {category: row.category})
+            WHERE NOT (i)-[:HAS_FLAVOR]->()
+            MATCH (fp:FlavorProfile {name: row.profile})
+            MERGE (i)-[:HAS_FLAVOR]->(fp)
+            """,
+            rows=cat_rows,
         )
         total = session.run(
             "MATCH ()-[:HAS_FLAVOR]->() RETURN count(*) AS n"
@@ -253,7 +291,7 @@ def load_item_ingredients(driver):
     so sequential is used here. The bigger BATCH_SIZE still gives a large speedup
     over the original 500-row batches (303 trips -> 31 trips).
     """
-    df = pd.read_csv(DATA_DIR / "item_ingredients.csv").fillna("")
+    df = pd.read_csv(DATA_DIR / "item_ingredients_retagged.csv").fillna("")
     rows = df.to_dict("records")
     run_batched(
         driver,

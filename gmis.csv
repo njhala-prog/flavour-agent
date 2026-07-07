@@ -1,56 +1,896 @@
 gmi_id,gmi_name,category
-1,burger,Entree
-2,pizza,Entree
-3,pasta,Entree
-4,taco,Entree
-5,burrito,Entree
-6,sushi,Entree
-7,ramen,Entree
-8,bibimbap,Entree
-9,pad thai,Entree
-10,tikka masala,Entree
-11,fried rice,Entree
-12,falafel,Entree
-13,shawarma,Entree
-14,kebab,Entree
-15,spring roll,Appetizer
-16,egg roll,Appetizer
-17,dumplings,Appetizer
-18,samosa,Appetizer
-19,bruschetta,Appetizer
-20,edamame,Appetizer
-21,nachos,Appetizer
-22,hummus,Appetizer
-23,gyoza,Appetizer
-24,pakora,Appetizer
-25,fries,Side
-26,rice,Side
-27,coleslaw,Side
-28,salad,Side
-29,naan,Side
-30,kimchi,Side
-31,mac & cheese,Side
-32,donut,Dessert
-33,tiramisu,Dessert
-34,cheesecake,Dessert
-35,brownie,Dessert
-36,gelato,Dessert
-37,churros,Dessert
-38,baklava,Dessert
-39,mango sticky rice,Dessert
-40,cookie,Dessert
-41,muffin,Dessert
-42,latte,Beverage
-43,cappuccino,Beverage
-44,espresso,Beverage
-45,cold brew,Beverage
-46,horchata,Beverage
-47,thai iced tea,Beverage
-48,matcha,Beverage
-49,milkshake,Beverage
-50,soju cocktail,Beverage
-51,ramen,Soup
-52,tom yum,Soup
-53,miso soup,Soup
-54,wonton soup,Soup
-55,dal,Soup
+1,bruschetta,appetizers
+2,cheese bread,appetizers
+3,garlic bread,appetizers
+4,other carb appetizers,appetizers
+5,pita,appetizers
+6,pretzel bites,appetizers
+7,buffalo chicken dip,appetizers
+8,guacamole,appetizers
+9,hummus,appetizers
+10,other dip-focused appetizers,appetizers
+11,queso dip,appetizers
+12,salsa verde,appetizers
+13,spinach artichoke dip,appetizers
+14,chicken bites,appetizers
+15,beef carpaccio,appetizers
+17,deviled eggs,appetizers
+18,lamb skewers,appetizers
+19,other protein-focused appetizers,appetizers
+20,shrimp cocktail,appetizers
+21,smoked salmon,appetizers
+22,tuna tartare,appetizers
+24,clams,appetizers
+25,coconut shrimp,appetizers
+26,jalapeño poppers,appetizers
+27,mozzarella sticks,appetizers
+28,other appetizers,appetizers
+29,coleslaw,appetizers
+30,egg salad,appetizers
+31,pasta salad,appetizers
+32,potato salad,appetizers
+33,seafood salad,appetizers
+34,shrimp salad,appetizers
+35,tuna salad,appetizers
+36,asian chicken salad,appetizers
+37,caesar salad,appetizers
+38,caprese salad,appetizers
+39,garden salad,appetizers
+40,greek salad,appetizers
+41,other salad-based appetizers,appetizers
+42,southwest salad,appetizers
+43,spinach salad,appetizers
+44,wedge salad,appetizers
+45,charcuterie board,appetizers
+46,cheese platter,appetizers
+47,dumplings,appetizers
+48,egg rolls,appetizers
+49,empanadas,appetizers
+50,fondue,appetizers
+51,other shared appetizers,appetizers
+52,samosas,appetizers
+53,spring rolls,appetizers
+54,beef stew,entrees
+55,broccoli cheddar soup,appetizers
+56,chicken noodle soup,appetizers
+57,clam chowder,appetizers
+58,french onion soup,appetizers
+59,lobster bisque,appetizers
+60,italian soup,appetizers
+61,miso soup,appetizers
+62,other soup-based appetizers,appetizers
+63,tomato soup,appetizers
+64,brussels sprouts,appetizers
+65,buffalo cauliflower,appetizers
+66,cauliflower,sides
+67,edamame,appetizers
+68,grilled artichokes,appetizers
+69,other veggie-focused appetizer,appetizers
+70,pickled vegetables,appetizers
+71,stuffed mushrooms,appetizers
+72,wings,appetizers
+74,ipa,beverages
+75,lager,beverages
+76,other beer,beverages
+77,pale ale,beverages
+78,pilsner,beverages
+79,stout,beverages
+80,cosmopolitan,beverages
+81,gin & tonic,beverages
+82,margarita,beverages
+83,mojito,beverages
+84,old fashioned,beverages
+85,other cocktails,beverages
+86,piña colada,beverages
+87,americano,beverages
+88,cappuccino,beverages
+89,espresso,beverages
+90,latte,beverages
+91,macchiato,beverages
+92,mocha,beverages
+93,other coffee,beverages
+94,regular coffee,beverages
+96,classic hot chocolate,beverages
+97,mexican hot chocolate,beverages
+98,other hot chocolate,beverages
+99,peppermint hot chocolate,beverages
+100,black tea,beverages
+101,chai tea,beverages
+102,green tea,beverages
+103,herbal tea,beverages
+104,other hot tea,beverages
+105,iced americano,beverages
+106,iced latte,beverages
+107,iced mocha,beverages
+108,other iced coffee,beverages
+109,green iced tea,beverages
+110,other iced tea,beverages
+111,peach iced tea,beverages
+112,sweet tea,beverages
+114,apple juice,beverages
+115,cranberry juice,beverages
+116,grapefruit juice,beverages
+117,orange juice,beverages
+118,other juices,beverages
+119,pineapple juice,beverages
+120,arnold palmer,beverages
+121,classic lemonade,beverages
+122,other lemonade,beverages
+123,pink lemonade,beverages
+124,strawberry lemonade,beverages
+125,almond milk,beverages
+127,other milk,beverages
+129,soy milk,beverages
+131,martini,beverages
+133,other mocktails,beverages
+134,shirley temple,beverages
+135,virgin mojito,beverages
+136,virgin piña colada,beverages
+137,mezcal,beverages
+139,sangria,beverages
+140,horchata,beverages
+141,kombucha,beverages
+147,coke,beverages
+148,dr. pepper,beverages
+149,ginger ale,beverages
+150,other soft drinks,beverages
+152,sprite,beverages
+154,champagne,beverages
+155,other sparkling wine,beverages
+156,prosecco,beverages
+157,caramel macchiato,beverages
+158,hazelnut mocha,beverages
+160,pumpkin spice latte,beverages
+161,vanilla latte,beverages
+162,cold brew,beverages
+163,iced caramel macchiato,beverages
+165,other specialty iced coffee,beverages
+166,gatorade,beverages
+170,red bull,beverages
+171,gin,beverages
+172,other straight alcohol,beverages
+173,rum,beverages
+174,tequila,beverages
+175,vodka,beverages
+176,whiskey,beverages
+177,bottled spring water,beverages
+178,other water,beverages
+179,still water,beverages
+180,other wine,beverages
+181,red wine,beverages
+182,rosé,beverages
+183,white wine,beverages
+184,baklava,desserts
+186,churros,desserts
+187,cinnamon roll,desserts
+188,danish pastry,desserts
+189,donut,desserts
+190,eclair,desserts
+191,muffin,desserts
+192,other pastry/breakfast desserts,desserts
+193,scone,desserts
+194,blondie,desserts
+195,classic brownie,desserts
+196,fudge brownie,desserts
+197,lemon bar,desserts
+198,magic cookie bar,desserts
+199,other brownies/bars,desserts
+200,carrot cake,desserts
+201,chocolate cake,desserts
+202,lemon cake,desserts
+203,other cakes,desserts
+204,red velvet cake,desserts
+205,vanilla bean cake,desserts
+207,apple crisp,desserts
+209,peach cobbler,desserts
+210,banana split,desserts
+211,ice cream sundae,desserts
+212,other combo desserts,desserts
+213,parfait,desserts
+214,waffle with ice cream,desserts
+215,chocolate chip cookie,desserts
+216,macaron,desserts
+217,oatmeal raisin cookie,desserts
+218,other cookies,desserts
+219,peanut butter cookie,desserts
+220,sugar cookie,desserts
+221,gelato,desserts
+222,ice cream,desserts
+223,other frozen-based desserts,desserts
+224,sorbet,desserts
+226,cannoli,desserts
+227,fruit tart,desserts
+228,other desserts,desserts
+229,rice pudding,desserts
+230,crème brûlée,desserts
+231,flan,desserts
+233,tiramisu,desserts
+234,tres leches cake,desserts
+235,apple pie,desserts
+236,banana cream pie,desserts
+237,cherry pie,desserts
+238,other pies,desserts
+239,pecan pie,desserts
+240,pumpkin pie,desserts
+241,carne asada,entrees
+242,filet mignon,entrees
+243,korean bbq,entrees
+244,mongolian beef,entrees
+245,other beef-based entrees,entrees
+246,oxtail,entrees
+247,pot roast,entrees
+248,prime rib,entrees
+249,ribeye steak,entrees
+250,beef short ribs,entrees
+251,steak,entrees
+252,tri-tip steak,entrees
+253,avocado toast,entrees
+254,bagel,entrees
+255,biscuits & gravy,entrees
+256,crepes,entrees
+257,french toast,entrees
+259,pancakes,entrees
+260,waffles,entrees
+262,eggs benedict,entrees
+263,huevos rancheros,entrees
+266,scrambled eggs,entrees
+267,shakshuka,entrees
+268,other breakfast entrees,entrees
+269,bacon cheeseburger,entrees
+270,bbq burger,entrees
+271,cheeseburger,entrees
+272,mushroom swiss burger,entrees
+273,other burgers,entrees
+274,sliders,entrees
+275,veggie burger,entrees
+276,butter chicken,entrees
+279,chicken parmesan,entrees
+281,chicken shawarma,entrees
+282,chicken tikka masala,entrees
+283,coq au vin,entrees
+284,fried chicken,entrees
+285,jerk chicken,entrees
+286,kung pao chicken,entrees
+287,other chicken-based entrees,entrees
+288,teriyaki chicken,entrees
+289,cod,entrees
+290,fish and chips,entrees
+291,other fish-based entrees,entrees
+292,salmon,entrees
+293,tuna steak,entrees
+294,snapper,entrees
+295,tilapia,entrees
+296,burritos,entrees
+298,chiles rellenos,entrees
+299,enchiladas,entrees
+300,fajitas,entrees
+301,flautas,entrees
+302,other mexican entrees,entrees
+303,quesadillas,entrees
+304,sopes,entrees
+305,tacos,entrees
+306,tamales,entrees
+307,gnocchi,entrees
+308,lo mein,entrees
+309,other noodle dishes,entrees
+310,pad thai,entrees
+311,pasta,entrees
+312,ramen,appetizers
+313,soba,entrees
+314,tortellini/ravioli,entrees
+315,udon noodles,entrees
+316,biryani,entrees
+317,chicken & waffles,entrees
+318,curry,entrees
+319,jambalaya,entrees
+321,shepherds pie,entrees
+322,bison burger,entrees
+323,dosa,entrees
+324,duck confit,entrees
+325,lamb chops,entrees
+327,quail,entrees
+328,cheese pizza,entrees
+329,hawaiian pizza,entrees
+330,margherita pizza,entrees
+332,other pizza,entrees
+333,pepperoni pizza,entrees
+334,white pizza,entrees
+335,bbq ribs,entrees
+336,carnitas,entrees
+337,chorizo and eggs,entrees
+339,other pork-based entrees,entrees
+340,pork belly,entrees
+341,pork chops,entrees
+342,pork schnitzel,entrees
+343,pork tenderloin,entrees
+344,pulled pork sandwich,entrees
+345,pork loin,entrees
+346,pork short ribs,entrees
+348,chicken salad,entrees
+349,cobb salad,entrees
+350,other salad-based entrees,entrees
+351,steak salad,entrees
+352,taco salad,entrees
+353,bagel sandwich,entrees
+354,blt,entrees
+355,chicken sandwich,entrees
+356,club sandwich,entrees
+357,croissant sandwich,entrees
+358,fish sandwich,entrees
+359,grilled cheese,entrees
+360,other sandwiches,entrees
+361,philly cheesesteak,entrees
+362,reuben,entrees
+363,tortas,entrees
+364,turkey sandwich,entrees
+365,crawfish,entrees
+366,crab,entrees
+367,crab cakes,entrees
+368,scallops,entrees
+369,lobster,entrees
+370,lobster roll,entrees
+371,other seafood-based entrees,entrees
+372,sushi,entrees
+373,poke,entrees
+374,sashimi,entrees
+375,paella,entrees
+376,nigiri,entrees
+377,shrimp scampi,entrees
+378,chicken tortilla soup,entrees
+379,chili,entrees
+381,pho,entrees
+382,pozole,entrees
+383,eggplant parmesan,entrees
+384,falafel platter,entrees
+385,lentil soup,appetizers
+386,mushroom risotto,entrees
+387,other veggie-based entrees,entrees
+388,vegetable stir-fry,entrees
+392,baked beans,sides
+393,black beans,sides
+394,chili beans,sides
+395,other beans,sides
+396,refried beans,sides
+397,fruit salad,sides
+398,side fruit,sides
+399,cornbread,sides
+400,hush puppies,sides
+401,mac & cheese,sides
+402,onion rings,sides
+404,baked potato,sides
+405,french fries,sides
+406,mashed potatoes,sides
+407,other potato-based sides,sides
+408,potato wedges,sides
+409,sweet potato fries,sides
+410,tater tots,sides
+411,other protein sides,sides
+412,side bacon,sides
+413,side grilled chicken,sides
+414,side meatballs,sides
+416,brown rice,sides
+417,fried rice,sides
+418,jasmine rice,sides
+419,other rice,sides
+420,white rice,sides
+423,side macaroni salad,sides
+424,other sauces/toppings,sides
+425,side gravy,sides
+426,side ranch dressing,sides
+427,side salsa,sides
+428,side sour cream,sides
+430,corn on the cob,sides
+431,grilled asparagus,sides
+432,other side veggies,sides
+433,sautéed spinach,sides
+434,steamed broccoli,sides
+435,agua fresca,beverages
+436,alcoholic cider,beverages
+437,alcoholic kombucha,beverages
+438,alfredo pizza,entrees
+439,american beef bbq,entrees
+440,anchovy pizza,entrees
+441,angel food cake,desserts
+442,apple pie with ice cream,desserts
+443,arepas,entrees
+444,bacon pizza,entrees
+445,baguette,appetizers
+446,baked feta pasta,entrees
+448,banh mi,entrees
+449,bbq chicken pizza,entrees
+450,bbq pork ribs,entrees
+451,beef barley soup,appetizers
+452,beef tenderloin,entrees
+453,bento box,entrees
+454,bibimbap,entrees
+455,birria tacos,entrees
+456,birthday cake ice cream,desserts
+457,biscotti,desserts
+458,bistec,entrees
+459,black and white cookie,desserts
+460,black bean soup,appetizers
+461,boba,beverages
+463,bread,appetizers
+464,breakfast combo plate,entrees
+465,breakfast sausage,sides
+466,buffalo chicken pizza,entrees
+467,bulgogi,entrees
+468,bundt cake,desserts
+469,burrito bowls,entrees
+470,butter boards,appetizers
+471,butter cookie,desserts
+473,caprese sandwich,entrees
+474,caramel ice cream,desserts
+475,carpaccio,appetizers
+476,celsius energy,beverages
+477,ceviche,entrees
+478,cheeseburger pizza,entrees
+479,cherry cola,beverages
+480,cherry ice cream,desserts
+482,chicken & wild rice soup,appetizers
+484,chicken bacon ranch pizza,entrees
+485,chicken corn soup,appetizers
+486,chicken parmensan pizza,entrees
+487,chicken pesto panini,entrees
+488,chicken tenders,entrees
+489,chilaquiles,entrees
+490,chocolate chip ice cream,desserts
+491,chocolate ice cream,desserts
+492,chocolate milk,beverages
+493,chopped cheese,entrees
+494,chowder,appetizers
+495,ciabatta,appetizers
+496,citrus soda,beverages
+497,clam pizza,entrees
+498,clams and oysters,appetizers
+499,coconut cake,desserts
+500,coconut milk,beverages
+501,coconut water,beverages
+502,coffee ice cream,desserts
+503,colas,beverages
+504,cookie dough ice cream,desserts
+505,cookies & cream ice cream,desserts
+507,cottage cheese,sides
+509,crab cake sandwich,entrees
+510,crab rangoon,appetizers
+511,cream puff,desserts
+513,cuban sandwich,entrees
+514,cupcakes,desserts
+516,dessert pizza,desserts
+518,diet colas,beverages
+519,diet lemon-lime soda,beverages
+521,double chocolate cookie,desserts
+523,duck-based entrees,entrees
+524,earl grey tea,beverages
+525,egg boil,appetizers
+526,egg drop soup,appetizers
+527,egg foo young,entrees
+528,egg salad sandwich,entrees
+529,eggplant parmesan sandwich,entrees
+530,english muffin,sides
+531,flatbread pizza,entrees
+532,flatbreads,entrees
+533,flavored water,beverages
+534,focaccia,appetizers
+536,french dip,entrees
+537,fried apple pie,desserts
+538,fried shrimp,appetizers
+540,galbi,entrees
+541,gazpacho,appetizers
+542,gingerbread cookie,desserts
+543,grape juice,beverages
+544,greek & mediterranean pizzas,entrees
+545,green goddess salad,entrees
+547,ham and cheese melt,entrees
+548,ham and cheese sandwich,entrees
+549,hamburger,entrees
+550,hot and sour soup,appetizers
+551,hot dog,entrees
+553,ice cream float,desserts
+556,italian cream cake,desserts
+557,italian wedding soup,appetizers
+560,kebabs,appetizers
+561,key lime cake,desserts
+562,kool aid,beverages
+563,kouign-amann,desserts
+564,kung pao (non-chicken),entrees
+565,lamb rack,entrees
+566,lassi,beverages
+567,lemon cookie,desserts
+568,lemon-lime sodas,beverages
+569,linzer cookie,desserts
+570,loaded french fries,sides
+571,loaded mac & cheese,sides
+572,loaded tater tots,sides
+573,m&m cookie,desserts
+574,mac & cheese bites,appetizers
+575,mango juice,beverages
+576,marsala,entrees
+577,matcha tea,beverages
+578,matzo ball soup,appetizers
+579,meat focused pizza,entrees
+581,meatball sub,entrees
+582,meatloaf sandwich,entrees
+583,menudo,appetizers
+585,milkshake,desserts
+586,mille-feuille,desserts
+587,mille-feuille (napoleon),desserts
+588,mimosa,beverages
+589,minestrone,appetizers
+590,mint chocolate chip ice cream,desserts
+591,mint tea,beverages
+593,molasses cookie,desserts
+594,muffuletta,entrees
+595,nacho tables,appetizers
+598,new york strip,entrees
+600,oatmeal,sides
+601,oatmeal chocolate chip cookie,desserts
+602,omelettes,entrees
+603,oolong tea,beverages
+604,orange soda,beverages
+606,other handheld breakfast entrees,entrees
+607,other hashes,entrees
+608,other jerk dishes,entrees
+609,other parmesans,entrees
+610,other rice bowls,entrees
+612,other stew,entrees
+613,pain au chocolat,desserts
+616,pasta e fagioli,appetizers
+617,pastrami on rye,entrees
+618,peanut butter chocolate ice cream,desserts
+619,pecan sandies,desserts
+620,pepperoni flatbread,entrees
+622,pesto pizza,entrees
+624,pineapple upside-down cake,desserts
+625,pistachio ice cream,desserts
+627,pork bbq (non-rib),entrees
+628,pot pie,entrees
+629,potato hashes,entrees
+630,potato leek soup,appetizers
+631,pound cake,desserts
+632,po’ boy,entrees
+635,pudding,desserts
+637,raspberry ice cream,desserts
+639,ricotta cake,desserts
+640,risotto,entrees
+641,roast beef sandwich,entrees
+644,rose,
+646,salmon rice bowl,entrees
+647,sausage pizza,entrees
+648,sauteed spinach,
+649,savory pancake,appetizers
+650,savory pastry,sides
+651,seafood dips,appetizers
+652,seafood pizza,entrees
+654,sfogliatelle,desserts
+655,shortbread,desserts
+656,shrimp scampi pizza,entrees
+657,shrimp-based entrees,entrees
+658,side egg,sides
+659,skewers (not lamb),appetizers
+660,sloppy joe,entrees
+661,slushy,desserts
+662,smoked salmon pizza,entrees
+663,smoothies,beverages
+664,snickerdoodle,desserts
+665,specialty tea,beverages
+666,specialty toast,appetizers
+667,spicy vodka rigatoni,entrees
+668,spinach & feta white pizza,entrees
+669,split pea soup,appetizers
+670,steamed rice,sides
+671,stir fry,entrees
+672,strawberry cake,desserts
+673,strawberry ice cream,desserts
+674,strawberry shortcake,desserts
+676,supreme pizza,entrees
+677,tarte tatin,desserts
+678,teriyaki,entrees
+680,thai tea,beverages
+681,three-cheese flatbread,entrees
+682,thumbprint cookie,desserts
+683,tikka,entrees
+684,tikka masala (non-chicken),entrees
+685,tikka pizza,entrees
+686,tom kha gai,appetizers
+687,tom yum,entrees
+688,tomato juice,beverages
+689,tortilla soup,appetizers
+690,tortillas,appetizers
+691,tuna salad sandwich,entrees
+692,tuna steak salad,entrees
+693,turkey melt,entrees
+694,tuscan soup,appetizers
+695,vanilla ice cream,desserts
+697,vitamin water,beverages
+698,white chocolate macadamia nut cookie,desserts
+699,white tea,beverages
+700,wonton soup,appetizers
+701,wraps,entrees
+769,cake batter ice cream,desserts
+771,chicken bacon artichoke pizza,entrees
+772,pancake cereal,sides
+774,croissant,desserts
+775,affogato,desserts
+782,aloo gobhi,entrees
+783,aloo mutter,entrees
+784,aloo tikki,appetizers
+785,aloo tikki chaat,appetizers
+788,amritsari kulcha,sides
+791,aperol spritz,beverages
+796,arancini,appetizers
+801,asparagus soup,appetizers
+802,assorted tempura,appetizers
+804,ayran,beverages
+810,baingan bharta,entrees
+820,basil beef,entrees
+821,basil chicken,entrees
+826,bc roll,entrees
+827,bean chili,appetizers
+828,bean soup,appetizers
+831,beef chili,appetizers
+832,beef in black bean sauce,entrees
+833,beef korma,entrees
+834,beef salad,appetizers
+837,beef tartare,appetizers
+839,beef vindaloo,entrees
+840,beef with mixed vegetables,entrees
+841,beef with oyster sauce,entrees
+842,beef with snow peas,entrees
+843,beet juice,beverages
+844,beet salad,appetizers
+847,bhel puri,appetizers
+848,bhindi masala,entrees
+860,black pepper beef,entrees
+868,branzino,entrees
+872,breakfast sandwich,entrees
+875,broccoli soup,appetizers
+884,bun bo hue,appetizers
+891,butter paneer,entrees
+893,cabbage soup,appetizers
+895,california roll,entrees
+902,carbonara,entrees
+907,carrot and leak soup,appetizers
+909,carrot halwa,desserts
+910,carrot juice,beverages
+911,cashew chicken,entrees
+913,cauliflower crust pizza,entrees
+914,cauliflower soup,appetizers
+915,celery juice,beverages
+918,chaat papri,appetizers
+921,chana bhatura,entrees
+922,channa masala,entrees
+923,chapati,sides
+928,cheese soup,appetizers
+936,cherry juice,beverages
+942,chicken 65,entrees
+947,chicken chili,appetizers
+949,chicken donburi,entrees
+950,chicken focused pizza,entrees
+951,chicken hakka noodles,entrees
+952,chicken in black bean sauce,entrees
+953,chicken karaage,appetizers
+956,chicken madras,entrees
+957,chicken manchurian,entrees
+960,chicken noodles,entrees
+961,chicken pakora,appetizers
+966,chicken saag,entrees
+971,chicken soup,appetizers
+975,chicken with mixed vegetables,entrees
+976,chickpea soup,appetizers
+981,chilli paneer,entrees
+982,chocolate bundt cake,desserts
+989,chopped scallop roll,entrees
+992,churro bites,desserts
+994,chutney,sides
+1000,clam soup,appetizers
+1011,coconut cream pie,desserts
+1013,coconut rice,sides
+1015,coconut soup,appetizers
+1026,corn cheese,appetizers
+1032,cortado,beverages
+1041,crab soup,appetizers
+1045,crazy roll,entrees
+1049,crispy pata,entrees
+1054,cucumber soup,appetizers
+1057,curry soup,appetizers
+1058,daal makhani,entrees
+1059,daal tadka,entrees
+1060,dahi bhalla,appetizers
+1061,dahi puri,appetizers
+1079,dumpling soup,appetizers
+1081,dynamite,appetizers
+1084,ebi sunomono,appetizers
+1100,espresso martini,beverages
+1102,falafel,appetizers
+1104,falafel salad,appetizers
+1105,fattoush,appetizers
+1107,fettuccini alfredo,entrees
+1110,fish masala,entrees
+1111,fish pakora,appetizers
+1113,fish vindaloo,entrees
+1137,garlic beef,entrees
+1139,garlic potatoes,sides
+1140,garlic rice,sides
+1144,general tao chicken,entrees
+1148,ginger beef,entrees
+1149,ginger chicken,entrees
+1152,goat vindaloo,entrees
+1153,gobi manchurian,entrees
+1154,goma ae,appetizers
+1155,goulash,appetizers
+1157,grape leaves,appetizers
+1163,green juice,beverages
+1164,green mango salad,appetizers
+1165,green onion cake,appetizers
+1166,green papaya salad,appetizers
+1172,guava juice,beverages
+1173,gumbo,appetizers
+1176,gyu don,entrees
+1177,hakka noodles,entrees
+1178,halo-halo,desserts
+1182,hamachi,entrees
+1187,hokkigai,entrees
+1188,honey garlic chicken,entrees
+1189,honey garlic ribs,entrees
+1193,hot sauce,sides
+1194,house roll,entrees
+1206,iced refresher,beverages
+1208,inari,appetizers
+1209,insalata mista,appetizers
+1219,jeera aloo,sides
+1220,jeera rice,sides
+1222,kachumber salad,appetizers
+1223,kadai chicken,entrees
+1224,kadai paneer,entrees
+1225,kafta,entrees
+1226,kamikaze roll,entrees
+1227,kani salad,appetizers
+1228,kappa roll,entrees
+1232,kimchi,sides
+1236,korma,entrees
+1237,korokke,appetizers
+1244,lamb saag,entrees
+1245,lamb shank,entrees
+1252,lemon soup,appetizers
+1264,london fog,beverages
+1265,longsilog,entrees
+1271,madras,entrees
+1273,malai soya chaap,entrees
+1274,mango chutney,sides
+1276,mango roll,entrees
+1277,mango salad,appetizers
+1279,mapo tofu,entrees
+1284,masago,entrees
+1286,matar paneer,entrees
+1297,mexican soups and stew,entrees
+1301,milkis,beverages
+1308,mint chutney,sides
+1311,mixed grill,entrees
+1312,mixed pickles,sides
+1313,mixed vegetables,entrees
+1320,monte cristo,entrees
+1321,moussaka,entrees
+1323,mud pie,desserts
+1326,muhammara,appetizers
+1327,mulligatawny soup,appetizers
+1329,mushroom soup,appetizers
+1334,navratan korma,entrees
+1336,negitoro roll,entrees
+1337,negroni,beverages
+1352,onion bhaji,appetizers
+1353,onion kulcha,sides
+1355,onion salad,appetizers
+1359,oshinko roll,entrees
+1427,oxtail soup,appetizers
+1428,oyako don,entrees
+1429,pad kee mao,entrees
+1431,pad woon sen,entrees
+1434,palak paneer,entrees
+1439,paneer 65,appetizers
+1440,paneer bhurji,entrees
+1441,paneer kulcha,sides
+1442,paneer lababdar,entrees
+1443,paneer pakora,appetizers
+1444,pani puri,appetizers
+1445,panini,entrees
+1446,panna cotta,desserts
+1447,papadum,appetizers
+1448,papaya salad,appetizers
+1450,passion fruit juice,beverages
+1456,pav bhaji,entrees
+1457,pea soup,appetizers
+1460,peach juice,beverages
+1463,pear juice,beverages
+1464,peas pulao,sides
+1467,penne arrabbiata,entrees
+1468,penne primavera,entrees
+1471,perogies,appetizers
+1477,pico de gallo,sides
+1480,pinakbet,entrees
+1491,pomegranate juice,beverages
+1492,poori,sides
+1495,pork bone soup,appetizers
+1496,pork chili/stew,appetizers
+1502,posole,appetizers
+1509,potato soup,appetizers
+1521,pulao rice,sides
+1524,pumpkin soup,appetizers
+1529,rainbow roll,entrees
+1532,ras malai,desserts
+1533,rasam,appetizers
+1535,ratatouille soup,appetizers
+1557,saag,entrees
+1558,saffron rice,sides
+1559,saganaki,appetizers
+1560,sake,beverages
+1568,sapporo,beverages
+1571,sausage soup,appetizers
+1576,scallop soup,appetizers
+1582,seafood platter,entrees
+1585,seafood soup,appetizers
+1587,shahi paneer,entrees
+1589,shanghai noodles,entrees
+1592,shish taouk,entrees
+1595,shrimp masala,entrees
+1599,shrimp soup,appetizers
+1600,shrimp vindaloo,entrees
+1601,shrimp with mixed vegetables,entrees
+1628,soup of the day,appetizers
+1632,spanakopita,appetizers
+1636,spicy scallop roll,entrees
+1637,spicy tuna roll,entrees
+1642,spinach soup,appetizers
+1650,sticky rice,sides
+1652,stir fried mixed vegetables,entrees
+1657,strawberry juice,beverages
+1664,sunomono salad,appetizers
+1667,sweet & sour chicken,entrees
+1668,sweet & sour pork,entrees
+1672,szechuan beef,entrees
+1673,szechuan chicken,entrees
+1674,tabouleh,appetizers
+1678,tako sunomono,appetizers
+1679,tako wasabi,appetizers
+1680,tamago roll,entrees
+1682,tamarind chutney,sides
+1683,tapsilog,entrees
+1684,tartare de saumon,appetizers
+1694,tiger roll,entrees
+1699,ting,beverages
+1712,tuna don,entrees
+1718,tuna tataki,appetizers
+1724,unagi,entrees
+1725,unagi don,entrees
+1731,vegetable korma,entrees
+1732,vegetable manchurian,entrees
+1733,vegetable pakora,appetizers
+1734,vegetable pulao,sides
+1735,vegetable soup,appetizers
+1738,veggie platter,appetizers
+1739,veggie roll,entrees
+1741,vindaloo,entrees
+1749,watermelon juice,beverages
+1752,white bean soup,appetizers
+1762,yam roll,entrees
+1763,yam tempura,appetizers
+1764,zuppa del giorno,appetizers
+2765,high-protein muffin,desserts
+2766,cruffin,desserts
+2767,pandan pastry,desserts
+2769,apple turnover,desserts
+2771,cane sugar soda,beverages
+2774,low-sugar soda,beverages
+2775,probiotic soda,beverages
+2776,prebiotic soda,beverages
+2778,cream soda,beverages
+2779,ube ice cream,desserts
+2780,tahini ice cream,desserts
+2781,strawberry sundae,desserts
+2785,plant-based ice cream,desserts
+2786,kulfi,desserts
+2788,ice cream sandwich,desserts
+2791,fried ice cream,desserts
+2794,chocolate sundae,desserts
+2796,brownie sundae,desserts
+2799,black sesame ice cream,desserts
